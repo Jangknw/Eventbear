@@ -632,6 +632,7 @@
     <Content Include="Views\AddLo\IndexAddLo.cshtml" />
     <Content Include="Views\AddLo\IndexAddRoom.cshtml" />
     <Content Include="Views\AlertFavorite\Index.cshtml" />
+    <Content Include="Views\AddLo\_PartialIndexAddRoom.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

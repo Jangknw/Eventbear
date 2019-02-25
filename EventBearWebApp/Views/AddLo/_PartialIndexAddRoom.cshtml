@@ -1,0 +1,58 @@
+﻿@model IEnumerable<RoomAndZoneModel>
+<div class="row matop">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-3 col-sm-6">
+            <div class="card">
+                <div id="SearchLoDetail1" class="carousel slide" data-ride="carousel">
+                    <a class="btn" href="#myModalSearchLoDetail1" data-toggle="modal">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="~/IMG1/สระน้ำ1.jpg" class="d-block w-100" />
+                            </div>
+                            <div class="carousel-item">
+                                <img src="~/IMG1/สระน้ำ1.jpg" class="d-block w-100" />
+                            </div>
+                            <div class="carousel-item">
+                                <img src="~/IMG1/สระน้ำ1.jpg" class="d-block w-100" />
+                            </div>
+                        </div>
+                    </a>
+                    <div id="myModalSearchLoDetail1" class="modal hide fade" tabindex="-1">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p><img src="~/IMG1/สระน้ำ1.jpg" class="d-block w-100" /></p>
+                            <p><img src="~/IMG1/สระน้ำ1.jpg" class="d-block w-100" /></p>
+                            <p><img src="~/IMG1/สระน้ำ1.jpg" class="d-block w-100" /></p>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#SearchLoDetail1" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#SearchLoDetail1" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">ชื่อ: @item.RoomAndZone_Name</h5>
+                    <p class="card-text">ราคา: @item.RoomAndZone_Price บาท</p>
+                    <p class="card-text">ค่ามัดจำ: @item.RoomAndZone_Deposit บาท</p>
+                    <p class="card-text">จำนวนคน: @item.RoomAndZone_NumberPeople คน</p>
+                    <p class="card-text">เบอร์โทรติดต่อ: 091-234-7890</p>
+                    <p class="card-text">อีเมล: event@hotmail.com</p>
+                    <p class="card-text">ตำแหน่งที่ตั้ง: 99/9 ซอย9 บราๆ</p>
+                    <p class="card-text">หมายเหตุ:สามารถคุยรายละเอียดเรื่องราคาได้ บราๆ</p>
+                    <button type="button" class="btn btn-info" @*data-toggle="modal" data-target="#exampleModal"*@>
+                        แก้ไข
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+</div>

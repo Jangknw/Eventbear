@@ -160,7 +160,13 @@ namespace EventBearWebApp.Controllers
             return View("IndexAddLo");
         }
 
-
+        public ActionResult _PartialIndexAddRoom(int Place_ID)
+        {
+            StringBuilder sql = new StringBuilder();
+            sql.AppendFormat("SELECT RoomAndZone_Name,RoomAndZone_Price,RoomAndZone_Deposit,RoomAndZone_NumberPeople  FROM RoomAndZone WHERE Place_ID = '{0}'; ", Place_ID);
+            IEnumerable<RoomAndZoneModel> roomAndZone = DatabaseUtilities.ExecuteQuery<RoomAndZoneModel>(sql).ToList();
+            return PartialView("_PartialIndexAddRoom", roomAndZone);
+        }
 
 
         public ActionResult IndexAddRoom()
