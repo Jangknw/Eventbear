@@ -1,8 +1,10 @@
-﻿
+﻿@model  PlaceModel
+
 @{
     ViewBag.Title = "IndexSearchLoDetail";
 }
 
+@Html.HiddenFor(Model => Model.Place_ID, new { @class = "form-control" })
 
 <div class="container-fluid">
     <div class="row matop">
@@ -12,6 +14,7 @@
     </div>
 </div>
 
+
 <div class="container-fluid">
 
     <div class="positionFixedLeft">
@@ -19,30 +22,19 @@
             <div class="card-body">
                 
 
-                <select class="form-control">
-                    <option value="01">--ระบุตำแหน่งที่ตั้ง--</option>
-                    <option value="02">กรุงเทพฯ,บางเขน</option>
-                    <option value="03">กรุงเทพฯ,ปากเกร็ด</option>
-                    <option value="04">กรุงเทพฯ,หลักสี่</option>
-                </select>
+                <div class="form-group">
+                    @Html.DropDownListFor(Model => Model.PlaceType_ID, new SelectList(ViewBag.placetypename, "PlaceType_ID", "PlaceType_Name"), "ระบุประเภทสถานที่",
+         new { @class = "form-control" })
+                </div>
 
+                <div class="form-group">
+                    @Html.DropDownListFor(Model => Model.Place_Province, new SelectList(ViewBag.provincename, "ID", "Name"), "ระบุจังหวัด", new { @class = "form-control bt" })
+                </div>
 
-                @Html.DropDownList("placetypename1", new SelectList(ViewBag.placetypename1, "PlaceType_ID", "PlaceType_Name"), "--ระบุประเภทสถานที่--",
-                        new { @class = "form-control bt" })
-
-                
-
-                @*<select class="form-control bt">
-                    <option value="11">--ระบุประเภทสถานที่--</option>
-                    <option value="22">ร้านอาหาร</option>
-                    <option value="33">ลานกิจกรรม</option>
-                    <option value="44">สวนสาธารณะ</option>
-                    <option value="55">ห้องสัมมนา</option>
-                    <option value="66">ห้องประชุม</option>
-                    <option value="77">ห้องจัดเลี้ยง</option>
-                    <option value="88">ห้องสตูดิโอ</option>
-                    <option value="99">ห้องซ้อมดนตรี</option>
-                </select>*@
+                <div class="form-group">
+                    @Html.DropDownListFor(Model => Model.Place_District, new SelectList(ViewBag.District, "ID", "Name"), "ระบุเขต/อำเภอ", new { @class = "form-control" })
+                </div>         
+               
 
                 <div class="form-group bt">
                     <input id="txtempNo1" class="form-control" href="#" type="text" value="ระบุจำนวนคน" onClick="this.select();" />
@@ -64,8 +56,9 @@
         </div>
     </div>
 
+    @Html.Action("_PartialIndexSearchLoDetail", "Search", new { Place_ID = 100003 })
 
-    <div class="row matop">
+    @*<div class="row matop">
         <div class="offset-md-3 col-md-3 col-sm-6">
             <div class="card">
                 <div id="SearchLoDetail1" class="carousel slide" data-ride="carousel">
@@ -305,7 +298,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>*@
 
     <nav aria-label="Page navigation example">
         <ul class="pagination aa">
@@ -371,407 +364,8 @@
 
 
 
+@section scripts {
+    @Scripts.Render("~/bundles/scripts/AddLo")
+}
 
 
-
-@*<div class="container">
-
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Modal Header</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>Some text in the modal.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ตกลง</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-    </div>
-
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>*@
-
-
-
-@*<div class="container-fluid">
-        <div class="row matop">
-            <div class="col-md-12">
-                <h2 class="search">ร้านอาหารแบร่ๆ <i class="fa fa-search"></i> </h2>
-            </div>
-        </div>
-    </div>
-
-    <div class="container-fluid">
-
-        <div class="positionFixedLeft">
-            <div class="card" style="width: 18rem; height:100%">
-                <div class="card-body">
-                    <select class="ss1 form-control bt">
-                        <option value="01">--ระบุตำแหน่งที่ตั้ง--</option>
-                        <option value="02">กรุงเทพฯ,บางเขน</option>
-                        <option value="03">กรุงเทพฯ,ปากเกร็ด</option>
-                        <option value="04">กรุงเทพฯ,หลักสี่</option>
-                    </select>
-
-                    <select class="ss1 form-control bt">
-                        <option value="11">--ระบุประเภท--</option>
-                        <option value="10">งานแต่งงาน</option>
-                        <option value="22">ร้านอาหาร</option>
-                        <option value="33">ลานกิจกรรม</option>
-                        <option value="44">สวนสาธารณะ</option>
-                        <option value="55">ห้องสัมมนา</option>
-                        <option value="66">ห้องประชุม</option>
-                        <option value="77">ห้องจัดเลี้ยง</option>
-                        <option value="88">ห้องสตูดิโอ</option>
-                        <option value="99">ห้องซ้อมดนตรี</option>
-                    </select>
-
-                    <div class="form-group bt">
-                        <input id="txtempNo1" class="ss1 form-control" href="#" type="text" value="ระบุจำนวนคน" onClick="this.select();" />
-                        <!--<input id="txtempNo2" class="ss1" href="#" type="date" value="วันที่ใช้" onClick="this.select();" />-->
-                        <!--<input id="datepicker" class="ss1" href="#" type="text" value="ถึงวันที่" onClick="this.select();" />-->
-
-                        <div class="date">
-                            <input type="text" class="ss1 form-control" id="fromDate" value="วันที่ใช้">
-                        </div>
-
-                        <div class="date">
-                            <input type="text" class="ss1 form-control" id="toDate" value="ถึงวันที่">
-                        </div>
-                    </div>
-
-                    <div class="divbutton">
-                        <a href="search.html" class="btn btn-dark btt">ค้นหา</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="row matop">
-            <div class="offset-md-3 col-md-3">
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="background-color:white">
-                    <div class="card" style="width: 18rem;">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="img/2.jpg" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="img/5.jpg" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="img/6.jpg" class="d-block w-100" alt="...">
-                            </div>
-                        </div>
-
-                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-                    <!--<img src="img/4.jpg" class="card-img-top" alt="...">-->
-                    <div class="card-body">
-                        <h5 class="card-title">โซนOutdoor</h5>
-                        <p class="card-text">ราคา: 5,000 บาท</p>
-                        <p class="card-text">ค่ามัดจำ: 1,000 บาท</p>
-                        <p class="card-text">จำนวนคน: 20 คน</p>
-                        <p class="card-text">วันที่ใช้: 21/01/62</p>
-                        <p class="card-text">ถึงวันที่: 21/01/62</p>
-                        <p class="card-text">เบอร์โทรติดต่อ: 091-234-7890</p>
-                        <p class="card-text">ตำแหน่งที่ตั้ง: 99/9 ซอย9 บราๆ</p>
-                        <p class="card-text">หมายเหตุ:สามารถคุยรายละเอียดเรื่องราคาได้ บราๆ</p>
-
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                            สนใจ
-                        </button>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                            จอง
-                        </button>
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>สำเร็จ</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--<a href="#" class="btn btn-primary">สนใจ</a>
-                        <a href="#" class="btn btn-primary">จอง</a>-->
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="col-md-3">
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                    <div class="card" style="width: 18rem;">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="img/2.jpg" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="img/5.jpg" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="img/6.jpg" class="d-block w-100" alt="...">
-                            </div>
-                        </div>
-                        <!--<img src="img/4.jpg" class="card-img-top" alt="...">-->
-                        <div class="card-body">
-                            <h5 class="card-title">ชื่อห้อง/โซน</h5>
-                            <p class="card-text">ราคา: 6,500 บาท</p>
-                            <p class="card-text">ค่ามัดจำ: 1,000 บาท</p>
-                            <p class="card-text">จำนวนคน: 30 คน</p>
-                            <p class="card-text">วันที่ใช้: 21/01/62</p>
-                            <p class="card-text">ถึงวันที่: 21/01/62</p>
-                            <p class="card-text">เบอร์โทรติดต่อ: 091-234-7890</p>
-                            <p class="card-text">ตำแหน่งที่ตั้ง: 99/9 ซอย9 บราๆ</p>
-                            <p class="card-text">หมายเหตุ:สามารถคุยรายละเอียดเรื่องราคาได้ บราๆ</p>
-                            <a href="#" class="btn btn-primary">สนใจ</a>
-                            <a href="#" class="btn btn-primary">จอง</a>
-                        </div>
-                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                    <div class="card" style="width: 18rem;">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="img/2.jpg" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="img/2.jpg" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="img/6.jpg" class="d-block w-100" alt="...">
-                            </div>
-                        </div>
-                        <!--<img src="img/4.jpg" class="card-img-top" alt="...">-->
-                        <div class="card-body">
-                            <h5 class="card-title">ชื่อห้อง/โซน</h5>
-                            <p class="card-text">ราคา: 7,000 บาท</p>
-                            <p class="card-text">ค่ามัดจำ: 1,000 บาท</p>
-                            <p class="card-text">จำนวนคน: 50 คน</p>
-                            <p class="card-text">วันที่ใช้: 21/01/62</p>
-                            <p class="card-text">ถึงวันที่: 21/01/62</p>
-                            <p class="card-text">เบอร์โทรติดต่อ: 091-234-7890</p>
-                            <p class="card-text">ตำแหน่งที่ตั้ง: 99/9 ซอย9 บราๆ</p>
-                            <p class="card-text">หมายเหตุ:สามารถคุยรายละเอียดเรื่องราคาได้ บราๆ</p>
-                            <a href="#" class="btn btn-primary">สนใจ</a>
-                            <a href="#" class="btn btn-primary">จอง</a>
-                        </div>
-                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="row matop">
-
-            <div class="offset-md-3 col-md-3">
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                    <div class="card" style="width: 18rem;">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="img/2.jpg" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="img/5.jpg" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="img/6.jpg" class="d-block w-100" alt="...">
-                            </div>
-                        </div>
-                        <!--<img src="img/4.jpg" class="card-img-top" alt="...">-->
-                        <div class="card-body">
-                            <h5 class="card-title">ชื่อห้อง/โซน</h5>
-                            <p class="card-text">ราคา: 5,000 บาท</p>
-                            <p class="card-text">ค่ามัดจำ: 1,000 บาท</p>
-                            <p class="card-text">จำนวนคน: 20 คน</p>
-                            <p class="card-text">วันที่ใช้: 21/01/62</p>
-                            <p class="card-text">ถึงวันที่: 21/01/62</p>
-                            <p class="card-text">เบอร์โทรติดต่อ: 091-234-7890</p>
-                            <p class="card-text">ตำแหน่งที่ตั้ง: 99/9 ซอย9 บราๆ</p>
-                            <p class="card-text">หมายเหตุ:สามารถคุยรายละเอียดเรื่องราคาได้ บราๆ</p>
-                            <a href="#" class="btn btn-primary">สนใจ</a>
-                            <a href="#" class="btn btn-primary">จอง</a>
-                        </div>
-                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <div class="col-md-3">
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                    <div class="card" style="width: 18rem;">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="img/2.jpg" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="img/5.jpg" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="img/6.jpg" class="d-block w-100" alt="...">
-                            </div>
-                        </div>
-                        <!--<img src="img/4.jpg" class="card-img-top" alt="...">-->
-                        <div class="card-body">
-                            <h5 class="card-title">ชื่อห้อง/โซน</h5>
-                            <p class="card-text">ราคา: 5,000 บาท</p>
-                            <p class="card-text">ค่ามัดจำ: 1,000 บาท</p>
-                            <p class="card-text">จำนวนคน: 20 คน</p>
-                            <p class="card-text">วันที่ใช้: 21/01/62</p>
-                            <p class="card-text">ถึงวันที่: 21/01/62</p>
-                            <p class="card-text">เบอร์โทรติดต่อ: 091-234-7890</p>
-                            <p class="card-text">ตำแหน่งที่ตั้ง: 99/9 ซอย9 บราๆ</p>
-                            <p class="card-text">หมายเหตุ:สามารถคุยรายละเอียดเรื่องราคาได้ บราๆ</p>
-                            <a href="#" class="btn btn-primary">สนใจ</a>
-                            <a href="#" class="btn btn-primary">จอง</a>
-                        </div>
-                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                    <div class="card" style="width: 18rem;">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="img/2.jpg" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="img/5.jpg" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="img/6.jpg" class="d-block w-100" alt="...">
-                            </div>
-                        </div>
-                        <!--<img src="img/4.jpg" class="card-img-top" alt="...">-->
-                        <div class="card-body">
-                            <h5 class="card-title">ชื่อห้อง/โซน</h5>
-                            <p class="card-text">ราคา: 4,000 บาท</p>
-                            <p class="card-text">ค่ามัดจำ: 1,000 บาท</p>
-                            <p class="card-text">จำนวนคน: 30 คน</p>
-                            <p class="card-text">วันที่ใช้: 21/01/62</p>
-                            <p class="card-text">ถึงวันที่: 21/01/62</p>
-                            <p class="card-text">เบอร์โทรติดต่อ: 091-234-7890</p>
-                            <p class="card-text">ตำแหน่งที่ตั้ง: 99/9 ซอย9 บราๆ</p>
-                            <p class="card-text">หมายเหตุ:สามารถคุยรายละเอียดเรื่องราคาได้ บราๆ</p>
-                            <a href="#" class="btn btn-primary">สนใจ</a>
-                            <a href="#" class="btn btn-primary">จอง</a>
-                        </div>
-                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <nav aria-label="Page navigation example">
-            <ul class="pagination aa">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-
-    </div>*@

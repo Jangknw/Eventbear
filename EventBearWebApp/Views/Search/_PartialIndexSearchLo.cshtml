@@ -1,9 +1,9 @@
-﻿@model IEnumerable<RoomAndZoneModel>
+﻿@model IEnumerable<PlaceModel>
 
 <div class="row matop">
     @foreach (var item in Model)
     {
-        <div class="col-md-3 col-sm-6">
+        <div class="offset-md-3 col-md-3 col-sm-6">
             <div class="card">
                 <div id="SearchLoDetail1" class="carousel slide" data-ride="carousel">
                     <a class="btn" href="#myModalSearchLoDetail1" data-toggle="modal">
@@ -41,19 +41,21 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">ชื่อห้อง/โซน: @item.RoomAndZone_Name</h5>
-                    <p class="card-text">ราคา: @item.RoomAndZone_Price บาท</p>
-                    <p class="card-text">ค่ามัดจำ: @item.RoomAndZone_Deposit บาท</p>
-                    <p class="card-text">จำนวนคน: @item.RoomAndZone_NumberPeople คน</p>
-                    <p class="card-text">เบอร์โทรติดต่อ: 091-234-7890</p>
-                    <p class="card-text">อีเมล: event@hotmail.com</p>
-                    <p class="card-text">ตำแหน่งที่ตั้ง: 99/9 ซอย9 บราๆ</p>
-                    <p class="card-text">หมายเหตุ:สามารถคุยรายละเอียดเรื่องราคาได้ บราๆ</p>
-                    <button type="button" class="btn btn-dark" @*data-toggle="modal" data-target="#exampleModal"*@>
-                        แก้ไข
-                    </button>
+                    <h5 class="card-title">ชื่อร้าน: @item.Place_Name</h5>
+                    <p class="card-text">เบอร์โทรติดต่อ: @item.Place_Tel</p>
+                    <p class="card-text">อีเมล: @item.Place_Email</p>
+                    <p class="card-text">ตำแหน่งที่ตั้ง: @item.Place_Address </p>
+                    <p class="card-text">ซอย: @item.Place_Alley </p>
+                    <p class="card-text">ถนน: @item.Place_Road </p>
+                    <p class="card-text">แขวง: @item.Place_SubDistrict</p>
+                    <p class="card-text">เขต: @item.Place_District</p>
+                    <p class="card-text">จังหวัด: @item.Place_Province</p>
+                    <p class="card-text">รหัสไปรษณีย์: @item.Place_Zipcode </p>
+                    <a href="@Url.Action("IndexSearchLoDetail", "Search")" class="btn btn-info">ค้นหา</a>
                 </div>
             </div>
         </div>
     }
 </div>
+
+

@@ -11,53 +11,71 @@ namespace EventBearWebApp.Controllers
 {
     public class SearchController : Controller
     {
+        [HttpPost]
+        public ActionResult DropDownDistrict(int provinID)
+        {
+            StringBuilder sql = new StringBuilder();
+            sql.AppendFormat("SELECT CAST(ID AS VARCHAR) AS Value ,Name AS Text FROM DB_District WHERE ProvinceID = '{0}' ", provinID);
+            var Dittict = DatabaseUtilities.ExecuteQuery<SelectListItem>(sql).ToList();
+            return Json(new { Status = true, data = Dittict });
+        }
+
+        private void Init()
+        {
+            List<PlaceTypeModel> placetypename = DatabaseUtilities.ExecuteQuery<PlaceTypeModel>
+            ("Select PlaceType_Name,PlaceType_ID from placetype").ToList();
+            ViewBag.placetypename = placetypename;
+
+            List<ProvinceModel> provincename = DatabaseUtilities.ExecuteQuery<ProvinceModel>
+           ("Select ID, Name from DB_Province").ToList();
+            ViewBag.provincename = provincename;
+            ViewBag.District = new List<DistrictModel>();
+            ViewBag.SubDistrict = new List<DistrictModel>();
+
+
+        }
+
         // GET: Search
         public ActionResult IndexSearchLo()
         {
-            //int rowAffect = DatabaseUtilities.ExecuteNonQuery(@" INSERT INTO PlaceType  Values ('100', 'Testja2',getdate(), 'test',getdate(),'test') ");
-            //int rowAffect1 = DatabaseUtilities.ExecuteNonQuery(@" INSERT INTO PlaceType  Values ('200', 'Testja3',getdate(), 'test',getdate(),'test') ");
-
-            //PlaceTypeModel placetypename = DatabaseLibrary
-            //    .DatabaseUtilities.ExecuteQuery<PlaceTypeModel>
-            //    (" Select * from PlaceType ").FirstOrDefault();  
-
-            //ตัวอย่าง Select ทูน่า
-           // List<ProvinceModel> provincename = DatabaseLibrary
-           //.DatabaseUtilities.ExecuteQuery<ProvinceModel>
-           // ("Select Province_ID,Province_Name from Province").ToList();
-           // ViewBag.provincename = provincename;
-
+            Init();
             List<PlaceTypeModel> placetypename = DatabaseLibrary
                .DatabaseUtilities.ExecuteQuery<PlaceTypeModel>
                 ("Select PlaceType_Name,PlaceType_ID from placetype").ToList();
             ViewBag.placetypename = placetypename;
-          
-
-
-            //StringBuilder sql = new StringBuilder();
-            //List<PlaceTypeModel> placeTypename = new List<PlaceTypeModel>();
-            //sql.AppendLine(" SELECT * FROM PlaceType ");
-
+               
             return View();
        
 
         }
 
+        public ActionResult _PartialIndexSearchLo(int Place_ID)
+        {
+            StringBuilder sql = new StringBuilder();
+            sql.AppendFormat("SELECT Place_Name,Place_Tel,Place_Email,Place_Address,Place_Alley,Place_Road,Place_Zipcode, Place_SubDistrict,Place_District,Place_Province FROM Place WHERE Place_ID = '{0}'; ", Place_ID);
+            IEnumerable<PlaceModel> SearchLo = DatabaseUtilities.ExecuteQuery<PlaceModel>(sql).ToList();
+            return PartialView("_PartialIndexSearchLo", SearchLo);
+        }
+
+
 
         public ActionResult IndexSearchLoDetail()
         {
-
-            //List<ProvinceModel> provincename = DatabaseLibrary
-            // .DatabaseUtilities.ExecuteQuery<ProvinceModel>
-            //  ("Select Province_ID,Province_Name from Province").ToList();
-            //ViewBag.provincename = provincename;
-
+            Init();
             List<PlaceTypeModel> placetypename = DatabaseLibrary
               .DatabaseUtilities.ExecuteQuery<PlaceTypeModel>
                ("Select PlaceType_Name,PlaceType_ID from placetype").ToList();
             ViewBag.placetypename = placetypename;
 
             return View();
+        }
+
+        public ActionResult _PartialIndexSearchLoDetail(int Place_ID)
+        {
+            StringBuilder sql = new StringBuilder();
+            sql.AppendFormat("SELECT RoomAndZone_Name,RoomAndZone_Price,RoomAndZone_Deposit,RoomAndZone_NumberPeople  FROM RoomAndZone WHERE Place_ID = '{0}'; ", Place_ID);
+            IEnumerable<RoomAndZoneModel> roomAndZone = DatabaseUtilities.ExecuteQuery<RoomAndZoneModel>(sql).ToList();
+            return PartialView("_PartialIndexSearchLoDetail", roomAndZone);
         }
     }
 }

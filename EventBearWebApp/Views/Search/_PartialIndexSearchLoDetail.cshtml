@@ -3,7 +3,8 @@
 <div class="row matop">
     @foreach (var item in Model)
     {
-        <div class="col-md-3 col-sm-6">
+        @*<div class="offset-md-3 col-md-3 col-sm-6">*@
+      <div class="offset-md-3 col-md-4 offset-md-1 col-md-4">
             <div class="card">
                 <div id="SearchLoDetail1" class="carousel slide" data-ride="carousel">
                     <a class="btn" href="#myModalSearchLoDetail1" data-toggle="modal">
@@ -41,6 +42,7 @@
                     </a>
                 </div>
                 <div class="card-body">
+                    <h5 class="card-title">ชื่อสถานประกอบการ: JKK</h5>
                     <h5 class="card-title">ชื่อห้อง/โซน: @item.RoomAndZone_Name</h5>
                     <p class="card-text">ราคา: @item.RoomAndZone_Price บาท</p>
                     <p class="card-text">ค่ามัดจำ: @item.RoomAndZone_Deposit บาท</p>
@@ -49,11 +51,12 @@
                     <p class="card-text">อีเมล: event@hotmail.com</p>
                     <p class="card-text">ตำแหน่งที่ตั้ง: 99/9 ซอย9 บราๆ</p>
                     <p class="card-text">หมายเหตุ:สามารถคุยรายละเอียดเรื่องราคาได้ บราๆ</p>
-                    <button type="button" class="btn btn-dark" @*data-toggle="modal" data-target="#exampleModal"*@>
-                        แก้ไข
-                    </button>
+                    <a href="@Url.Action("IndexSearchLoDetail", "Search")" class="btn btn-info">ค้นหา</a>
                 </div>
             </div>
         </div>
     }
 </div>
+
+
+

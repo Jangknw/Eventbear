@@ -1,4 +1,4 @@
-﻿@model PlaceAndRoomViewModel
+﻿@model RoomAndZoneModel
 @{
     ViewBag.Title = "IndexAddRoom";
 }
@@ -59,30 +59,30 @@
                     <div class="offset-md-2 col-md-4 matop">
                         <div class="form-group">
                             @Html.Label("ชื่อห้อง/โซน:")
-                            @Html.TextBoxFor(Model => Model.RoomAndZoneModel.RoomAndZone_Name, new { @class = "form-control" })
+                            @Html.TextBoxFor(Model => Model.RoomAndZone_Name,  new { @class = "form-control", placeholder = "เช่น ห้องบอลลูน" })
                             @*@Html.ValidationMessageFor(Model => Model.Place_Name)*@
                         </div>
                         <div class="form-group">
                             @Html.Label("ราคา")
-                            @Html.TextBoxFor(Model => Model.RoomAndZoneModel.RoomAndZone_Price, new { @class = "form-control" })
+                            @Html.TextBoxFor(Model => Model.RoomAndZone_Price,  new { @class = "form-control", placeholder = "เช่น 5,000" })
                             @*@Html.ValidationMessageFor(Model => Model.Place_Name)*@
                         </div>
                         <div class="form-group">
                             @Html.Label("ค่ามัดจำ")
-                            @Html.TextBoxFor(Model => Model.RoomAndZoneModel.RoomAndZone_Deposit, new { @class = "form-control" })
+                            @Html.TextBoxFor(Model => Model.RoomAndZone_Deposit,  new { @class = "form-control", placeholder = "เช่น 1,000" })
                             @*@Html.ValidationMessageFor(Model => Model.Place_Name)*@
                         </div>
                     </div>
                     <div class="col-md-4 matop">
                         <div class="form-group">
                             @Html.Label("จำนวนคน")
-                            @Html.TextBoxFor(Model => Model.RoomAndZoneModel.RoomAndZone_NumberPeople, new { @class = "form-control" })
+                            @Html.TextBoxFor(Model => Model.RoomAndZone_NumberPeople, new { @class = "form-control" ,placeholder = "เช่น 20 คน" })
                             @*@Html.ValidationMessageFor(Model => Model.Place_Name)*@
                         </div>
 
                         <div class="form-group">
                             @Html.Label("หมายเหตุ")
-                            @Html.TextBoxFor(Model => Model.RoomAndZoneModel.RoomAndZone_Note, new { @class = "form-control" })
+                            @Html.TextBoxFor(Model => Model.RoomAndZone_Note, new { @class = "form-control", placeholder = "ระบุเงื่อนไขเพิ่มเติม" })
                             @*@Html.ValidationMessageFor(Model => Model.Place_Name)*@
                         </div>
 
@@ -95,21 +95,13 @@
                     <div class="offset-md-2 col-md-4 pd-100">
                         <div class="col-md-1">
                             <div class="divbutton">
-                                <button type="button" class="btn btn-info btt mgL-200 " data-toggle="modal" data-target="#ModalAddRoomSave">
+                                <button type="button" class="btn btn-dark btt mgL-200 " data-toggle="modal" data-target="#ModalAddRoomSave">
                                     บันทึก
                                 </button>
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-md-1 pd-100">
-                        <div class="divbutton">
-                            <button type="button" class="btn btn-info btt mgR-200 " data-toggle="modal" data-target="#ModalAddRoomCancel">
-                                ยกเลิก
-                            </button>
-
-                        </div>
-                    </div>
+                   
                 </div>
 
                 <div class="modal fade" id="ModalAddRoomSave" tabindex="-1" role="dialog" aria-labelledby="ModalAddRoomSave" aria-hidden="true">
@@ -122,11 +114,11 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <p>ข้อมูลของคุณได้ถูกจัดเก็บเรียบร้อยแล้ว!!!</p>
+                                <p>ข้อมูลของคุณจะถูกบันทึกไว้ในระบบ</p>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-secondary" @*data-dismiss="modal"*@>ตกลง</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                                <button type="submit" class="btn btn-dark" @*data-dismiss="modal"*@>ตกลง</button>
+                                <button type="button" class="btn btn-dark" data-dismiss="modal">ยกเลิก</button>
                             </div>
                         </div>
                     </div>
@@ -141,7 +133,7 @@
 
 
 
-@Html.Action("_PartialIndexAddRoom", "AddLo",new { Place_ID = 100003 }) 
+@Html.Action("_PartialIndexAddRoom", "AddLo", new { Place_ID = 100003 }) 
 
 <nav aria-label="Page navigation example">
     <ul class="pagination aa">

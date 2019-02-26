@@ -63,7 +63,7 @@
 
                         <div class="form-group">
                             @Html.Label("ชื่อสถานประกอบการ:")
-                            @Html.TextBoxFor(Model => Model.Place_Name, new { @class = "form-control" })
+                            @Html.TextBoxFor(Model => Model.Place_Name, new { @class = "form-control", placeholder = "เช่น EventBear หมูกระทะ" })
                             @*@Html.ValidationMessageFor(Model => Model.Place_Name)*@
                         </div>
 
@@ -76,24 +76,23 @@
 
                         <div class="form-group">
                             @Html.Label("เบอร์โทรร้าน:")
-                            @Html.TextBoxFor(Model => Model.Place_Tel, new { @class = "form-control" })
+                            @Html.TextBoxFor(Model => Model.Place_Tel,  new { @class = "form-control", placeholder = "เช่น 0914827531" })
                         </div>
 
 
                         <div class="form-group">
                             @Html.Label("อีเมล:")
-                            @Html.TextBoxFor(Model => Model.Place_Email, new { @class = "form-control" })
+                            @Html.TextBoxFor(Model => Model.Place_Email,  new { @class = "form-control", placeholder = "เช่น Event@gmail.com" })
                         </div>
 
                         <div class="form-group">
                             @Html.Label("จังหวัด:")
-                            @Html.DropDownListFor(Model => Model.Place_Province, new SelectList(ViewBag.provincename, "ID", "Name"), "ระบุจังหวัด",
-                        new { @class = "form-control bt" })
+                            @Html.DropDownListFor(Model => Model.Place_Province, new SelectList(ViewBag.provincename, "ID", "Name"), "ระบุจังหวัด", new { @class = "form-control bt" })
                         </div>
 
                         <div class="form-group">
                             @Html.Label("เขต/อำเภอ:")
-                            @Html.DropDownListFor(Model => Model.Place_District, new SelectList(ViewBag.District, "ID", "Name"), new { @class = "form-control" })
+                            @Html.DropDownListFor(Model => Model.Place_District, new SelectList(ViewBag.District, "ID", "Name"), "ระบุเขต/อำเภอ",new { @class = "form-control" })
                         </div>
                       
                     </div>
@@ -102,23 +101,23 @@
 
 
                         <div class="form-group">
-                            @Html.Label("แขวง/ตำบน:")
-                            @Html.DropDownListFor(Model => Model.Place_SubDistrict, new SelectList(ViewBag.SubDistrict, "ID", "Name"), new { @class = "form-control" })
+                            @Html.Label("แขวง/ตำบล:")
+                            @Html.DropDownListFor(Model => Model.Place_SubDistrict, new SelectList(ViewBag.SubDistrict, "ID", "Name"), "ระบุแขวง/ตำบล",new { @class = "form-control" })
                         </div>
 
                         <div class="form-group">
                             @Html.Label("เลขที่:")
-                            @Html.TextBoxFor(Model => Model.Place_Address, new { @class = "form-control" })
+                            @Html.TextBoxFor(Model => Model.Place_Address, new { @class = "form-control", placeholder = "เช่น 99/99" })
                         </div>
 
                         <div class="form-group">
                             @Html.Label("ถนน:")
-                            @Html.TextBoxFor(Model => Model.Place_Road, new { @class = "form-control" })
+                            @Html.TextBoxFor(Model => Model.Place_Road,  new { @class = "form-control", placeholder = "เช่น พหลโยธิน" }) 
                         </div>
 
                         <div class="form-group">
                             @Html.Label("ตรอก/ซอย:")
-                            @Html.TextBoxFor(Model => Model.Place_Alley, new { @class = "form-control" })
+                            @Html.TextBoxFor(Model => Model.Place_Alley, new { @class = "form-control", placeholder = "เช่น พหลโยธิน49" })
                         </div>
                       
                         <div class="form-group">
@@ -131,14 +130,11 @@
                 </div>
 
 
-
-
-
                 <div class="row matop">
                     <div class="offset-md-2 col-md-4 pd-100 magL140">
                         <div class="col-md-1">
                             <div class="divbutton">
-                                <button type="button" class="btn btn-info btt mgL-200" data-toggle="modal" data-target="#ModalAddLoSave">
+                                <button type="button" class="btn btn-dark btt mgL-200" data-toggle="modal" data-target="#ModalAddLoSave">
                                     บันทึก
                                 </button>
                             </div>
@@ -147,7 +143,7 @@
 
                     <div class="col-md-1 pd-100">
                         <div class="divbutton">
-                            <button type="button" class="btn btn-info btt mgR-200" data-toggle="modal" data-target="#ModalAddLoCancel">
+                            <button type="button" class="btn btn-dark btt mgR-200" data-toggle="modal" data-target="#ModalAddLoCancel">
                                 ยกเลิก
                             </button>
 
@@ -178,7 +174,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>ข้อมูลของคุณได้ถูกจัดเก็บเรียบร้อยแล้ว!!!</p>
+                    <p>ข้อมูลของคุณจะถูกจัดเก็บไว้ในระบบ!!!</p>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-secondary" @*data-dismiss="modal"*@>ตกลง</button>
