@@ -1,4 +1,5 @@
-﻿@{
+﻿@model BookingModel
+@{
     ViewBag.Title = "Booking";
 }
 
@@ -10,7 +11,10 @@
         </div>
     </div>
 
-    <div class="row matop">
+
+@Html.Action("_PartialIndexBooking", "Booking", new { Place_ID = 100003 }) 
+ 
+    @*<div class="row matop">
 
 
         <div class="col-md-3">          
@@ -52,8 +56,8 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
-                <div class="card-body">
-                    <h5>ชื่อร้าน: ร้านอาหารแบร่ๆ </h5>
+                <div class="card-body fof">
+                    <h5 class="fof">ชื่อร้าน: ร้านอาหารแบร่ๆ </h5>
                     <p>ชื่อห้อง/โซน: ห้องบอลลูน</p>
                     <p>รหัสการจอง: 012345678</p>
                     <p>ราคา: 9,500 บาท</p>
@@ -112,8 +116,8 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
-                <div class="card-body">
-                    <h5>ชื่อร้าน: ร้านอาหารแบร่ๆ </h5>
+                <div class="card-body fof">
+                    <h5 class="fof">ชื่อร้าน: ร้านอาหารแบร่ๆ </h5>
                     <p>ชื่อห้อง/โซน: ห้องบอลลูน</p>
                     <p>รหัสการจอง: 012345678</p>
                     <p>ราคา: 9,500 บาท</p>
@@ -129,15 +133,14 @@
                         ยกเลิก
                     </button>
 
-
                 </div>
             </div>
-        </div>
+        </div>*@
 
 
 
 
-        <div class="col-md-3">            
+        @*<div class="col-md-3">            
             <div class="card">
                 <div id="Booking1" class="carousel slide" data-ride="carousel">
                     <a class="btn" href="#myModalBooking1" data-toggle="modal">
@@ -176,8 +179,8 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
-                <div class="card-body">
-                    <h5>ชื่อร้าน: ร้านอาหารแบร่ๆ </h5>
+                <div class="card-body fof">
+                    <h5 class="fof">ชื่อร้าน: ร้านอาหารแบร่ๆ </h5>
                     <p>ชื่อห้อง/โซน: ห้องบอลลูน</p>
                     <p>รหัสการจอง: 012345678</p>
                     <p>ราคา: 9,500 บาท</p>
@@ -232,8 +235,8 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
-                <div class="card-body">
-                    <h5>ชื่อร้าน: ร้านอาหารแบร่ๆ </h5>
+                <div class="card-body fof">
+                    <h5 class="fof">ชื่อร้าน: ร้านอาหารแบร่ๆ </h5>
                     <p>ชื่อห้อง/โซน: ห้องบอลลูน</p>
                     <p>รหัสการจอง: 012345678</p>      
                     <p>ราคา: 9,500 บาท</p>
@@ -244,14 +247,11 @@
                     <p>ตำแหน่งที่ตั้ง: 99/9 ซอย9 บราๆ</p>
                     <p>สถานะ: การจองสำเร็จ</p>
                     <p class="card-text">วันที่จอง: 21/01/62</p>
-                <p class="card-text">ถึงวันที่: 21/01/62</p>                   
-                    @*<button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
-                        ยกเลิก
-                    </button>*@
+                <p class="card-text">ถึงวันที่: 21/01/62</p>                                     
                 </div>
             </div>                                
         </div>
-    </div>
+    </div>*@
 
 
 
@@ -282,13 +282,13 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="ModalBooking">เตือน!!!</h5>
+                <h5 class="modal-title fof" id="ModalBooking">เตือน!!!</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>การจองของคุณจะถูกยกเลิก!!!</p>
+                <p class="fof">การจองของคุณจะถูกยกเลิก!!!</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">ตกลง</button>

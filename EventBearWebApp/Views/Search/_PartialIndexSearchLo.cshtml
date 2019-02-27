@@ -1,9 +1,9 @@
 ﻿@model IEnumerable<PlaceModel>
 
-<div class="row matop">
+<div class="row offset-md-3">
     @foreach (var item in Model)
     {
-        <div class="offset-md-3 col-md-3 col-sm-6">
+        <div class="matop col-4">
             <div class="card">
                 <div id="SearchLoDetail1" class="carousel slide" data-ride="carousel">
                     <a class="btn" href="#myModalSearchLoDetail1" data-toggle="modal">
@@ -51,7 +51,7 @@
                     <p class="card-text">เขต: @item.Place_District</p>
                     <p class="card-text">จังหวัด: @item.Place_Province</p>
                     <p class="card-text">รหัสไปรษณีย์: @item.Place_Zipcode </p>
-                    <a href="@Url.Action("IndexSearchLoDetail", "Search")" class="btn btn-info">ค้นหา</a>
+                    <a href="@Url.Action("IndexSearchLoDetail", "Search")" class="btn btn-dark">ค้นหา</a>
                 </div>
             </div>
         </div>

@@ -40,23 +40,23 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
-                <div class="card-body">
-                    <h5 class="card-title">ชื่อห้อง/โซน: @item.RoomAndZone_Name</h5>
+                <div class="card-body fof">
+                    <h5 class="fof">รหัสการจอง: 012345678 </h5>
+                    <h5 class="fof">ชื่อร้าน: ร้านอาหารแบร่ๆ </h5>
+                    <h5 class="fof">ชื่อห้อง/โซน: @item.RoomAndZone_Name</h5>
                     <p class="card-text">ราคา: @item.RoomAndZone_Price บาท</p>
                     <p class="card-text">ค่ามัดจำ: @item.RoomAndZone_Deposit บาท</p>
-                    <p class="card-text">จำนวนคน: @item.RoomAndZone_NumberPeople คน</p>
-                    <p class="card-text">เบอร์โทรติดต่อ: 091-234-7890</p>
-                    <p class="card-text">อีเมล: event@hotmail.com</p>
-                    <p class="card-text">ตำแหน่งที่ตั้ง: 99/9 ซอย9 บราๆ</p>
-                    <p class="card-text">หมายเหตุ:สามารถคุยรายละเอียดเรื่องราคาได้ บราๆ</p>
-                    <button type="button" class="btn btn-dark" @*data-toggle="modal" data-target="#exampleModal"*@>
-                        แก้ไข
+                    <p class="card-text">จำนวนคน: @item.RoomAndZone_NumberPeople คน</p>                                                                        
+                    <p>ติดต่อร้าน: 091-234-7890</p>
+                    <p>อีเมล: event@hotmail.com</p>
+                    <p>ตำแหน่งที่ตั้ง: 99/9 ซอย9 บราๆ</p>
+                    <p>สถานะ:จอง</p>
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#ModalBooking">
+                        ยกเลิก
                     </button>
-                    <button type="button" class="btn btn-dark" @*data-toggle="modal" data-target="#exampleModal"*@>
-                        ลบ
-                    </button>
-                </div>
+                </div>             
             </div>
         </div>
     }
 </div>
+
