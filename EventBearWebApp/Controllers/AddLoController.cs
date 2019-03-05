@@ -41,10 +41,9 @@ namespace EventBearWebApp.Controllers
            ("Select ID, Name from DB_Province").ToList();
             ViewBag.provincename = provincename;
             ViewBag.District = new List<DistrictModel>();
-            ViewBag.SubDistrict = new List<DistrictModel>();
-
-        
+            ViewBag.SubDistrict = new List<DistrictModel>();   
         }
+
         // GET: AddLo
         public ActionResult IndexAddLo()
         {
@@ -54,8 +53,7 @@ namespace EventBearWebApp.Controllers
             var temp = DatabaseUtilities.ExecuteQuery<PlaceModel>
              ("Select * from Place where Customer_ID = 100001").LastOrDefault();
 
-            return View(temp);
-            //return View();
+            return View(temp);            
         }
 
         [HttpPost]
@@ -164,15 +162,16 @@ namespace EventBearWebApp.Controllers
               
             }
 
-            return View("IndexAddLo");
+            return View("IndexAddRoom");
         }
 
 
         public ActionResult _PartialIndexAddRoom(int Place_ID)
         {
             StringBuilder sql = new StringBuilder();
-            sql.AppendFormat("SELECT RoomAndZone_Name,RoomAndZone_Price,RoomAndZone_Deposit,RoomAndZone_NumberPeople  FROM RoomAndZone WHERE Place_ID = '{0}'; ", Place_ID);
-            IEnumerable<RoomAndZoneModel> roomAndZone = DatabaseUtilities.ExecuteQuery<RoomAndZoneModel>(sql).ToList();
+            //sql.AppendFormat("SELECT RoomAndZone_Name,RoomAndZone_Price,RoomAndZone_Deposit,RoomAndZone_NumberPeople  FROM RoomAndZone WHERE Place_ID = '{0}'; ", Place_ID);
+            sql.AppendFormat("select * from View_SearchLoDetail WHERE Place_ID = '{0}'; ", Place_ID);
+            IEnumerable<SearchLoDetailDViewModel> roomAndZone = DatabaseUtilities.ExecuteQuery<SearchLoDetailDViewModel>(sql).ToList();
             return PartialView("_PartialIndexAddRoom", roomAndZone);
         }
 
@@ -201,39 +200,10 @@ namespace EventBearWebApp.Controllers
                 StringBuilder sql = new StringBuilder();
                 List<DBParameter> param = new List<DBParameter>();
 
-                if (ModelState.IsValid)
-                {
-                    if (model.RoomAndZone_ID != null && model.RoomAndZone_ID > 0)
+                //if (ModelState.IsValid)
+                //{
+                    if (model.RoomAndZone_ID == null || model.RoomAndZone_ID == 0)
                     {
-                       
-                        var query = new StringBuilder();
-                        query.Append("UPDATE RoomAndZone SET ");
-                        query.Append("Place_ID = @Place_ID, ");                     
-                        query.Append("RoomAndZone_Name = @RoomAndZone_Name,");
-                        query.Append("RoomAndZone_Price = @RoomAndZone_Price,");
-                        query.Append("RoomAndZone_Deposit = @RoomAndZone_Deposit,");
-                        query.Append("RoomAndZone_NumberPeople = @RoomAndZone_NumberPeople,");
-                        query.Append("RoomAndZone_Note = @RoomAndZone_Note ");                     
-                        query.Append("WHERE RoomAndZone_ID = @RoomAndZone_ID");
-
-                        sql.AppendLine(query.ToString());
-
-                        param.Add("@Place_ID", 100003);
-                        param.Add("@RoomAndZone_Name", model.RoomAndZone_Name);
-                        param.Add("@RoomAndZone_Price", model.RoomAndZone_Price);
-                        param.Add("@RoomAndZone_Deposit", model.RoomAndZone_Deposit);
-                        param.Add("@RoomAndZone_NumberPeople", model.RoomAndZone_NumberPeople);
-                        param.Add("@RoomAndZone_Note", model.RoomAndZone_Price);
-                        param.Add("@RoomAndZone_ID", model.RoomAndZone_ID);
-
-                        DatabaseUtilities.ExecuteNonQuery(sql, param);
-
-                    }
-                    else
-                    {
-                        //sql.AppendLine(" INSERT INTO Place (Customer_ID,PlaceType_ID, Place_Name, Place_Address, Place_Alley, Place_Road, Place_Province, Place_District,Place_SubDistrict ,Place_Zipcode,Place_Tel) ");
-                        //sql.AppendLine(" VALUES(@Customer_ID,@PlaceType_ID, @Place_Name, @Place_Address, @Place_Alley, @Place_Road,@Place_Province,@Place_District, @Place_SubDistrict ,@Place_Zipcode,@Place_Tel  ) ");
-                        //param.Add("@Customer_ID", model.Customer_ID);
 
                         var query = new StringBuilder();
                         query.Append("INSERT INTO RoomAndZone (");
@@ -243,7 +213,7 @@ namespace EventBearWebApp.Controllers
                         query.Append("RoomAndZone_Deposit,");
                         query.Append("RoomAndZone_NumberPeople,");
                         query.Append("RoomAndZone_Note )");
-                      
+
 
                         var queryParam = new StringBuilder();
                         queryParam.Append(" VALUES (");
@@ -253,7 +223,7 @@ namespace EventBearWebApp.Controllers
                         queryParam.Append("@RoomAndZone_Deposit,");
                         queryParam.Append("@RoomAndZone_NumberPeople,");
                         queryParam.Append("@RoomAndZone_Note )");
-                       
+
 
                         sql.AppendLine(query.ToString());
                         sql.AppendLine(queryParam.ToString());
@@ -267,10 +237,37 @@ namespace EventBearWebApp.Controllers
                         //param.Add("@RoomAndZone_ID", model.RoomAndZone_ID);                    
 
                         DatabaseUtilities.ExecuteNonQuery(sql, param);
+                       
+
+                    }
+                    else
+                    {
+                        
+                        //var query = new StringBuilder();
+                        //query.Append("UPDATE RoomAndZone SET ");
+                        //query.Append("Place_ID = @Place_ID, ");                     
+                        //query.Append("RoomAndZone_Name = @RoomAndZone_Name,");
+                        //query.Append("RoomAndZone_Price = @RoomAndZone_Price,");
+                        //query.Append("RoomAndZone_Deposit = @RoomAndZone_Deposit,");
+                        //query.Append("RoomAndZone_NumberPeople = @RoomAndZone_NumberPeople,");
+                        //query.Append("RoomAndZone_Note = @RoomAndZone_Note ");                     
+                        //query.Append("WHERE RoomAndZone_ID = @RoomAndZone_ID");
+
+                        //sql.AppendLine(query.ToString());
+
+                        //param.Add("@Place_ID", 100003);
+                        //param.Add("@RoomAndZone_Name", model.RoomAndZone_Name);
+                        //param.Add("@RoomAndZone_Price", model.RoomAndZone_Price);
+                        //param.Add("@RoomAndZone_Deposit", model.RoomAndZone_Deposit);
+                        //param.Add("@RoomAndZone_NumberPeople", model.RoomAndZone_NumberPeople);
+                        //param.Add("@RoomAndZone_Note", model.RoomAndZone_Price);
+                        //param.Add("@RoomAndZone_ID", model.RoomAndZone_ID);
+
+                        //DatabaseUtilities.ExecuteNonQuery(sql, param);                       
 
                     }
 
-                }
+                //}
 
                 return View("IndexAddRoom");
             }

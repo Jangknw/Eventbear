@@ -1,539 +1,72 @@
-﻿@model  PlaceModel
-
+﻿@model  PlaceAndPlaceTypeModel
 
 @{
-   ViewBag.Title = "IndexSearchLo";
+    ViewBag.Title = "IndexSearchLo";
 }
 
- 
-    <div class="container-fluid">
-        <div class="row matop">
-            <div class="col-md-12">
-                <h2 class="search NameEvent">ผลการค้นหา<i class="fa fa-search"></i> </h2>
-            </div>
+<div class="container-fluid">
+
+    <div class="row matop">
+        <div class="col-md-12">
+            <h2 class="search NameEvent">ผลการค้นหา<i class="fa fa-search"></i> </h2>
         </div>
     </div>
+</div>
 
-    <div class="container-fluid">
+<div class="container-fluid">
+    @using (Ajax.BeginForm("_PartialIndexSearchLo", "Search", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "_divPartialIndexSearchLo", InsertionMode = InsertionMode.Replace, OnComplete = "" }))
+    {
 
         <div class="positionFixedLeft">
             <div class="card" style="width: 18rem; height:100%">
                 <div class="card-body">
 
-                    <div class="form-group">                      
-                        @Html.DropDownListFor(Model => Model.PlaceType_ID, new SelectList(ViewBag.placetypename, "PlaceType_ID", "PlaceType_Name"), "ระบุประเภทสถานที่",
-         new { @class = "form-control" })
-                    </div>                   
-                    
+                    <div class="form-group">
+                        @Html.DropDownListFor(Model => Model.PlaceType_ID, new SelectList(ViewBag.placetypename, "PlaceType_ID", "PlaceType_Name"), "ระบุประเภทสถานที่", new { @class = "form-control" })
+                    </div>
+
                     <div class="form-group">
                         @Html.DropDownListFor(Model => Model.Place_Province, new SelectList(ViewBag.provincename, "ID", "Name"), "ระบุจังหวัด", new { @class = "form-control bt" })
                     </div>
-                    
+
                     <div class="form-group">
                         @Html.DropDownListFor(Model => Model.Place_District, new SelectList(ViewBag.District, "ID", "Name"), "ระบุเขต/อำเภอ", new { @class = "form-control" })
-                    </div>          
-                                                       
-                    <div class="form-group bt">
-                        <input id="txtempNo1" class="form-control" href="#" type="text" value="ระบุจำนวนคน" onClick="this.select();" />
-                        <!--<input id="txtempNo2" class="ss1" href="#" type="date" value="วันที่ใช้" onClick="this.select();" />-->
-                        <!--<input id="datepicker" class="ss1" href="#" type="text" value="ถึงวันที่" onClick="this.select();" />-->
-
-                        @*<div class="date">
-                            <input type="text" class="ss1 form-control" id="fromDate" value="วันที่ใช้">
-                        </div>
-
-                        <div class="date">
-                            <input type="text" class="ss1 form-control" id="toDate" value="ถึงวันที่">
-                        </div>*@
                     </div>
 
                     <div class="divbutton">
-                        <a href="@Url.Action("IndexSearchLo","Search")" class="btn btn-dark btt">ค้นหา</a>
+                        <button type="submit" class="btn btn-dark btt">ค้นหา</button>
                     </div>
+
                 </div>
             </div>
         </div>
-
-
-        @*<div class="row matop">
-            <div class="offset-md-3 col-md-3 col-sm-6">
-                
-                <div class="card">
-                 
-                    <div id="SearchLo1" class="carousel slide" data-ride="carousel">
-                        <a class="btn" href="#myModalSearchLo1" data-toggle="modal">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="~/IMG1/สระน้ำ1.jpg" class="d-block w-100"/>
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="~/IMG1/สระน้ำ1.jpg" class="d-block w-100"/>
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="~/IMG1/สระน้ำ1.jpg" class="d-block w-100"/>
-                                </div>
-                            </div>
-                        </a>
-
-                        <div id="myModalSearchLo1" class="modal hide fade" tabindex="-1">
-                            <div class="modal-header">                                
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <p><img src="~/IMG1/สระน้ำ1.jpg" class="d-block w-100"/></p>
-                                <p><img src="~/IMG1/สระน้ำ1.jpg" class="d-block w-100"/></p>
-                                <p><img src="~/IMG1/สระน้ำ1.jpg" class="d-block w-100"/></p>
-                            </div>
-                        </div>
-
-                        <a class="carousel-control-prev" href="#SearchLo1" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#SearchLo1" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-
-                    <div class="card-body">
-                        <h5 class="card-title">ร้านอาหารแบร่ๆ</h5>                                             
-                        <p class="card-text">เบอร์โทรติดต่อ: 091-234-7890</p>
-                        <p class="card-text">อีเมล: eventbear@hotmail.com</p>
-                        <p class="card-text">ตำแหน่งที่ตั้ง: 99/9 ซอย9 บราๆ</p>
-                        <a href="@Url.Action("IndexSearchLoDetail","Search")" class="btn btn-info">ค้นหา</a>                                                                 
-                    </div>
-                </div>              
-            </div>
-
-            <div class="col-md-3 col-sm-6">
-                <div class="card">
-
-                    <div id="SearchLo2" class="carousel slide" data-ride="carousel">
-                        <a class="btn" href="#myModalSearchLo2" data-toggle="modal">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="~/IMG1/ร้านอาหาร2.jpg" class="d-block w-100"/> 
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="~/IMG1/ร้านอาหาร2.jpg" class="d-block w-100"/> 
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="~/IMG1/ร้านอาหาร2.jpg" class="d-block w-100"/>                                 
-                                </div>
-                            </div>
-                        </a>
-
-                        <div id="myModalSearchLo2" class="modal hide fade" tabindex="-1">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <p><img src="~/IMG1/ร้านอาหาร2.jpg" class="d-block w-100"/> </p>
-                                <p><img src="~/IMG1/ร้านอาหาร2.jpg" class="d-block w-100"/> </p>
-                                <p><img src="~/IMG1/ร้านอาหาร2.jpg" class="d-block w-100"/> </p>
-                            </div>
-                        </div>
-
-                        <a class="carousel-control-prev" href="#SearchLo2" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#SearchLo2" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">ร้านอาหารนะจ้ะ</h5>                        
-                        <p class="card-text">เบอร์โทรติดต่อ: 091-234-7890</p>
-                        <p class="card-text">อีเมล: eventbear@hotmail.com</p>
-                        <p class="card-text">ตำแหน่งที่ตั้ง: 99/9 ซอย9 บราๆ</p>
-                        <a href="@Url.Action("IndexSearchLoDetail","Search")" class="btn btn-info">ค้นหา</a>
-                    </div>
-                </div>               
-            </div>
-
-
-
-
-
-            <div class="col-md-3 col-sm-6">                
-                <div class="card">
-                    
-                    <div id="SearchLo3" class="carousel slide" data-ride="carousel">
-
-                        <a class="btn" href="#myModalSearchLo3" data-toggle="modal">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="~/IMG1/งานแต่ง1.jpg" class="d-block w-100"/>
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="~/IMG1/งานแต่ง1.jpg" class="d-block w-100"/>
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="~/IMG1/งานแต่ง1.jpg" class="d-block w-100"/>
-                                </div>
-                            </div>
-                        </a>
-
-                        <div id="myModalSearchLo3" class="modal hide fade" tabindex="-1">
-                            <div class="modal-header">
-                                <button class="close" type="button" data-dismiss="modal">×</button>
-                            </div>
-                            <div class="modal-body">
-                                <p><img src="~/IMG1/งานแต่ง1.jpg" class="d-block w-100"/></p>
-                                <p><img src="~/IMG1/งานแต่ง1.jpg" class="d-block w-100"/></p>
-                                <p><img src="~/IMG1/งานแต่ง1.jpg" class="d-block w-100"/></p>
-                            </div>
-                        </div>
-
-                        <a class="carousel-control-prev" href="#SearchLo3" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#SearchLo3" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-
-                    <div class="card-body">
-                        <h5 class="card-title">ร้านอาหารนะจ้ะ</h5>
-                        <p class="card-text">เบอร์โทรติดต่อ: 091-234-7890</p>
-                        <p class="card-text">อีเมล: eventbear@hotmail.com</p>
-                        <p class="card-text">ตำแหน่งที่ตั้ง: 99/9 ซอย9 บราๆ</p>
-                        <a href="@Url.Action("IndexSearchLoDetail","Search")" class="btn btn-info">ค้นหา</a>
-                    </div>
-                </div>                
-            </div>
-        </div>*@
-
-
-        @*<div class="row matop">
-            <div class="offset-md-3 col-md-3 col-sm-6">                
-                <div class="card">
-                   
-                    <div id="SearchLo4" class="carousel slide" data-ride="carousel">
-                        <a class="btn" href="#myModalSearchLo4" data-toggle="modal">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="~/IMG1/ห้องซ้อมดนตรี1.jpg" class="d-block w-100"/>
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="~/IMG1/ห้องซ้อมดนตรี1.jpg" class="d-block w-100"/>
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="~/IMG1/ห้องซ้อมดนตรี1.jpg" class="d-block w-100"/>
-                                </div>
-                            </div>
-                        </a>
-
-                        <div id="myModalSearchLo4" class="modal hide fade" tabindex="-1">
-                            <div class="modal-header">
-                                <button class="close" type="button" data-dismiss="modal">×</button>
-                            </div>
-                            <div class="modal-body">                                
-                                <p><img src="~/IMG1/ห้องซ้อมดนตรี1.jpg" class="d-block w-100"/></p>
-                                <p><img src="~/IMG1/ห้องซ้อมดนตรี1.jpg" class="d-block w-100"/></p>
-                                <p><img src="~/IMG1/ห้องซ้อมดนตรี1.jpg" class="d-block w-100"/></p>
-                            </div>
-                        </div>
-
-                        <a class="carousel-control-prev" href="#SearchLo4" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#SearchLo4" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-
-                    <div class="card-body">
-                        <h5 class="card-title">ร้านอาหารแบร่ๆ</h5>
-                        <p class="card-text">เบอร์โทรติดต่อ: 091-234-7890</p>
-                        <p class="card-text">อีเมล: eventbear@hotmail.com</p>
-                        <p class="card-text">ตำแหน่งที่ตั้ง: 99/9 ซอย9 บราๆ</p>
-                        <a href="@Url.Action("IndexSearchLoDetail","Search")" class="btn btn-info">ค้นหา</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6">               
-                <div class="card">
-                   
-                    <div id="SearchLo5" class="carousel slide" data-ride="carousel">
-                        <a class="btn" href="#myModalSearchLo5" data-toggle="modal">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="~/IMG1/ห้องประชุม2.jpg" class="d-block w-100"/>                                    
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="~/IMG1/ห้องประชุม2.jpg" class="d-block w-100" />     
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="~/IMG1/ห้องประชุม2.jpg" class="d-block w-100" />     
-                                </div>
-                            </div>
-                        </a>
-
-                        <div id="myModalSearchLo5" class="modal hide fade" tabindex="-1">
-                            <div class="modal-header">
-                                <button class="close" type="button" data-dismiss="modal">×</button>
-                            </div>
-                            <div class="modal-body">
-                                <p><img src="~/IMG1/ห้องประชุม2.jpg" class="d-block w-100" /></p>
-                                <p><img src="~/IMG1/ห้องประชุม2.jpg" class="d-block w-100" /></p>
-                                <p><img src="~/IMG1/ห้องประชุม2.jpg" class="d-block w-100" /></p>
-                            </div>
-                        </div>
-
-                        <a class="carousel-control-prev" href="#SearchLo5" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#SearchLo5" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-
-                    <div class="card-body">
-                        <h5 class="card-title">ร้านอาหารนะจ้ะ</h5>
-                        <p class="card-text">เบอร์โทรติดต่อ: 091-234-7890</p>
-                        <p class="card-text">อีเมล: eventbear@hotmail.com</p>
-                        <p class="card-text">ตำแหน่งที่ตั้ง: 99/9 ซอย9 บราๆ</p>
-                        <a href="@Url.Action("IndexSearchLoDetail","Search")" class="btn btn-info">ค้นหา</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6">                
-                <div class="card">
-                    <div id="SearchLo6" class="carousel slide" data-ride="carousel">
-
-                        <a class="btn" href="#myModalSearchLo6" data-toggle="modal">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="~/IMG1/สระน้ำ1.jpg" class="d-block w-100" />
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="~/IMG1/สระน้ำ1.jpg" class="d-block w-100" />
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="~/IMG1/สระน้ำ1.jpg" class="d-block w-100" />
-                                </div>
-                            </div>
-                        </a>
-
-                        <div id="myModalSearchLo6" class="modal hide fade" tabindex="-1">
-                            <div class="modal-header">
-                                <button class="close" type="button" data-dismiss="modal">×</button>
-                            </div>
-                            <div class="modal-body">
-                                <p><img src="~/IMG1/สระน้ำ1.jpg" class="d-block w-100" /></p>
-                                <p><img src="~/IMG1/สระน้ำ1.jpg" class="d-block w-100" /></p>
-                                <p><img src="~/IMG1/สระน้ำ1.jpg" class="d-block w-100" /></p>
-                            </div>
-                        </div>
-
-                        <a class="carousel-control-prev" href="#SearchLo6" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#SearchLo6" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">ร้านอาหารนะจ้ะ</h5>
-                        <p class="card-text">เบอร์โทรติดต่อ: 091-234-7890</p>
-                        <p class="card-text">อีเมล: eventbear@hotmail.com</p>
-                        <p class="card-text">ตำแหน่งที่ตั้ง: 99/9 ซอย9 บราๆ</p>
-                        <a href="@Url.Action("IndexSearchLoDetail","Search")" class="btn btn-info">ค้นหา</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-        <div class="row matop">
-            <div class="offset-md-3 col-md-3 col-sm-6">              
-                <div class="card">
-                    <div id="SearchLo7" class="carousel slide" data-ride="carousel">
-
-                        <a class="btn" href="#myModalSearchLo7" data-toggle="modal">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="~/IMG1/สระน้ำ1.jpg" class="d-block w-100" />
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="~/IMG1/สระน้ำ1.jpg" class="d-block w-100" />
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="~/IMG1/สระน้ำ1.jpg" class="d-block w-100" />
-                                </div>
-                            </div>
-                        </a>
-
-                        <div id="myModalSearchLo7" class="modal hide fade" tabindex="-1">
-                            <div class="modal-header">
-                                <button class="close" type="button" data-dismiss="modal">×</button>
-                            </div>
-                            <div class="modal-body">
-                                <p><img src="~/IMG1/สระน้ำ1.jpg" class="d-block w-100" /></p>
-                                <p><img src="~/IMG1/สระน้ำ1.jpg" class="d-block w-100" /></p>
-                                <p><img src="~/IMG1/สระน้ำ1.jpg" class="d-block w-100" /></p>
-                            </div>
-                        </div>
-
-                        <a class="carousel-control-prev" href="#SearchLo7" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#SearchLo7" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">ร้านอาหารแบร่ๆ</h5>
-                        <p class="card-text">เบอร์โทรติดต่อ: 091-234-7890</p>
-                        <p class="card-text">อีเมล: eventbear@hotmail.com</p>
-                        <p class="card-text">ตำแหน่งที่ตั้ง: 99/9 ซอย9 บราๆ</p>
-                        <a href="@Url.Action("IndexSearchLoDetail","Search")" class="btn btn-info">ค้นหา</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6">              
-                <div class="card">
-                    <div id="SearchLo8" class="carousel slide" data-ride="carousel">
-                        <a class="btn" href="#myModalSearchLo8" data-toggle="modal">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="~/IMG1/สระน้ำ1.jpg" class="d-block w-100" />
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="~/IMG1/สระน้ำ1.jpg" class="d-block w-100" />
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="~/IMG1/สระน้ำ1.jpg" class="d-block w-100" />
-                                </div>
-                            </div>
-                        </a>
-
-                        <div id="myModalSearchLo8" class="modal hide fade" tabindex="-1">
-                            <div class="modal-header">
-                                <button class="close" type="button" data-dismiss="modal">×</button>
-                            </div>
-                            <div class="modal-body">
-                                <p><img src="~/IMG1/สระน้ำ1.jpg" class="d-block w-100" /></p>
-                                <p><img src="~/IMG1/สระน้ำ1.jpg" class="d-block w-100" /></p>
-                                <p><img src="~/IMG1/สระน้ำ1.jpg" class="d-block w-100" /></p>
-                            </div>
-                        </div>
-
-                        <a class="carousel-control-prev" href="#SearchLo8" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#SearchLo8" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">ร้านอาหารนะจ้ะ</h5>
-                        <p class="card-text">เบอร์โทรติดต่อ: 091-234-7890</p>
-                        <p class="card-text">อีเมล: eventbear@hotmail.com</p>
-                        <p class="card-text">ตำแหน่งที่ตั้ง: 99/9 ซอย9 บราๆ</p>
-                        <a href="@Url.Action("IndexSearchLoDetail","Search")" class="btn btn-info">ค้นหา</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6">                
-                <div class="card">
-                    <div id="SearchLo9" class="carousel slide" data-ride="carousel">
-
-                        <a class="btn" href="#myModalSearchLo9" data-toggle="modal">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="~/IMG1/สระน้ำ1.jpg" class="d-block w-100" />
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="~/IMG1/สระน้ำ1.jpg" class="d-block w-100" />
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="~/IMG1/สระน้ำ1.jpg" class="d-block w-100" />
-                                </div>
-                            </div>
-                        </a>
-
-                        <div id="myModalSearchLo9" class="modal hide fade" tabindex="-1">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <p><img src="~/IMG1/สระน้ำ1.jpg" class="d-block w-100" /></p>
-                                <p><img src="~/IMG1/สระน้ำ1.jpg" class="d-block w-100" /></p>
-                                <p><img src="~/IMG1/สระน้ำ1.jpg" class="d-block w-100" /></p>
-                            </div>
-                        </div>
-
-                        <a class="carousel-control-prev" href="#SearchLo9" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#SearchLo9" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">ร้านอาหารนะจ้ะ</h5>
-                        <p class="card-text">เบอร์โทรติดต่อ: 091-234-7890</p>
-                        <p class="card-text">อีเมล: eventbear@hotmail.com</p>
-                        <p class="card-text">ตำแหน่งที่ตั้ง: 99/9 ซอย9 บราๆ</p>
-                        <a href="@Url.Action("IndexSearchLoDetail","Search")" class="btn btn-info">ค้นหา</a>
-                    </div>
-                </div>
-            </div>
-        </div>*@
-
-        @Html.Action("_PartialIndexSearchLo", "Search", new { Place_ID = 100003 })
-        
-        <nav aria-label="Page navigation example">
-            <ul class="pagination aa">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                <li class="page-item"><a class="page-link" href="#">6</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>       
+    }
+    <div id="_divPartialIndexSearchLo">
+        @{Html.RenderAction("_PartialIndexSearchLo", "Search");}
     </div>
+
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination aa">
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">5</a></li>
+            <li class="page-item"><a class="page-link" href="#">6</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
 
 
 @section scripts {

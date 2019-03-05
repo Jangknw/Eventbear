@@ -1,10 +1,8 @@
-﻿
+﻿@model  PlaceModel
+
 @{
     ViewBag.Title = "Home Page";
 }
-
-
-
 
 <div class="container ">
     <div class="row">
@@ -40,35 +38,24 @@
 <div class="container-fuild ">
     <div class="row ">
         <div class="col-md-3 ma bg-pink">
-            <div class="ctas-wrapper">
-                <select class="ss1">
-                    <option value="01">--ระบุตำแหน่งที่ตั้ง--</option>
-                    <option value="02">กรุงเทพฯ,บางเขน</option>
-                    <option value="03">กรุงเทพฯ,ปากเกร็ด</option>
-                    <option value="04">กรุงเทพฯ,หลักสี่</option>
-                </select>
+           
+            <div class="form-group">
+                @Html.DropDownListFor(Model => Model.PlaceType_ID, new SelectList(ViewBag.placetypename, "PlaceType_ID", "PlaceType_Name"), "ระบุประเภทสถานที่",
+         new { @class = "ss1" })
+            </div>          
+        </div>
+        <div class="col-md-3 ma bg-pink">       
+                <div class="form-group">
+                    @Html.DropDownListFor(Model => Model.Place_Province, new SelectList(ViewBag.provincename, "ID", "Name"), "ระบุจังหวัด", new { @class = "ss1" })
+                </div>                
             </div>
-        </div>
         <div class="col-md-3 ma bg-pink">
-            <div class="cta3 ">
-                <select class="ss1 ">
-                    <option value="011">--ประเภทสถานที่--</option>
-                    <option value="013">ร้านอาหาร</option>
-                    <option value="014">สวนสาธารณะ</option>
-                    <option value="015">ลานกิจกรรม</option>
-                    <option value="016">ห้องประชุม</option>
-                    <option value="017">ห้องจัดเลี้ยง</option>
-                    <option value="018">ห้องสัมมนา</option>
-                    <option value="017">ห้องสตูดิโอ</option>
-                    <option value="018">ห้องซ้อมดนตรี</option>
-                </select>
-            </div>
+            <div class="form-group">
+                @Html.DropDownListFor(Model => Model.Place_District, new SelectList(ViewBag.District, "ID", "Name"), "ระบุเขต/อำเภอ", new { @class = "ss1" })
+            </div>  
         </div>
-        <div class="col-md-3 ma bg-pink">
-            <input id="txtempNo1" class="ss1" maxlength="9" href="#" type="text" value="--ระบุจำนวนคน--" onClick="this.select();" />
-        </div>
-        <div class="col-md-3 ma bg-pink">
-            <div class="divbutton">
+        <div class="col-md-3 ma bg-pink">      
+            <div class="divbutton">               
                 <a href="@Url.Action("IndexSearchLo", "Search")" class="btn btn-primary Tot offset-4 ">ค้นหา</a>
             </div>
         </div>
@@ -195,7 +182,6 @@
             <a href="@Url.Action("IndexSearchLoDetail", "Search")"><img src="~/IMG1/mo7.jpg" class="card-img-top" alt="..." width="150" height="190"></a>
             <div class="card-body">
                 <div class="card-title god">ร้านแสงจันทร์</div>
-
             </div>
         </div>
     </div>
@@ -210,90 +196,6 @@
 </div>
 
 
-
-@*<div class="row">
-        <div class="col-md-8">
-            <div>
-                <h4 class="display-4">EventBear Project</h4>
-                <p class="lead">สถานที่สำหรับจัดงานประชุม สัมมนา งานแต่งงาน ปาร์ตี้หรืองานอีเว้นท์ต่างๆ หลายรูปแบบหลากสไตล์ให้คุณเลือกในงบประมาณที่คุณวางแผนไว้ </p>
-            </div>
-        </div>
-    </div>*@
-
-
-@*<div class="container">
-        <div class="row">
-            <div class="form-group col-md-3">
-                <!-- Trigger the modal with a button -->
-                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">ข้อมูลส่วนตัว</button>
-
-            </div>
-
-        </div>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="form-group col-md-12">
-                    @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
-@*<h4 class="modal-title">ลงทะเบียนข้อมูลส่วนตัว</h4>
-    </div>
-    <div class="form-group col-md-12">
-        <img src="~/img/1.jpg" class="Photo" alt="...">
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputFirstname">ชื่อ</label>
-                <input type="text" class="form-control" id="inputFirstname1" placeholder="">
-
-                <label for="inputNumber">เบอร์โทร</label>
-                <input type="text" class="form-control" id="inputNumber1">
-
-                <label for="inputAddress1">ที่อยู่</label>
-                <input type="text" class="form-control" id="inputAddress1">
-
-                <label for="inputAddress2">แขวง/ตำบล</label>
-                <input type="text" class="form-control" id="inputAddress2">
-
-                <label for="inputAddress3">จังหวัด</label>
-                <input type="text" class="form-control" id="inputAddress3">
-
-                <label for="inputEmail4">อีเมล์</label>
-                <input type="email" class="form-control" id="inputEmail5" placeholder="">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="inputLastname">นามสกุล</label>
-                <input type="text" class="form-control" id="inputLastname1">
-
-                <label for="inputBirthday">ว/ด/ป/เกิด</label>
-                <input type="text" class="form-control" id="inputBirthday">
-
-                <label for="inputAddress4">ตรอก/ซอย</label>
-                <input type="text" class="form-control" id="inputAddress4">
-
-                <label for="inputAddress5">เขต/อำเภอ</label>
-                <input type="text" class="form-control" id="inputAddress5">
-
-                <label for="inputAddress6">รหัสไปรษณีย์</label>
-                <input type="text" class="form-control" id="inputAddress6">
-            </div>
-        </div>
-        <div class="form-row matop poss">
-            <div class="form-group offset-3 col-md-1">
-                <button type="submit" class="btn btn-primary ">ตกลง</button>
-            </div>
-            <div class="form-group offset-1 col-md-1">
-                <button type="submit" class="btn btn-primary">ยกเลิก</button>
-            </div>
-        </div>
-    </div>
-    <div class="modal-footer">*@
-@*<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>*@
-@*</div>
-            </div>
-        </div>
-    </div>*@
-
+@section scripts {
+    @Scripts.Render("~/bundles/scripts/Home")
+}

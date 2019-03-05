@@ -39,8 +39,8 @@
     </div>
 </div>
 
-
-<div class="container-fluid">
+@Html.Action("_PartialIndexAlertBooking", "AlertBooking", new { Place_ID = 100003 }) 
+@*<div class="container-fluid">
     <div class="row matop">
 
         <div class="col-md-3" >            
@@ -91,9 +91,9 @@
                     <p class="card-text">จำนวนคน: 30 คน</p>
                     <p class="card-text">สถานะ: จอง</p>
 
-                    @*<button type="button" class="btn btn-info" id="hii">
+                    <button type="button" class="btn btn-info" id="hii">
                         ตกลง1
-                    </button>*@
+                    </button>
 
                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#ModalAlertBookConfirm1">
                         ตกลง
@@ -227,7 +227,7 @@
         </div>
 
     </div>
-</div>
+</div>*@
 
 <nav aria-label="Page navigation example">
     <ul class="pagination aa">

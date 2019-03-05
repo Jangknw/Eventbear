@@ -1,4 +1,4 @@
-﻿Api 
+﻿//Api 
 //[HttpPost]
 //public ActionResult DropDownWarehose(string branchCode)
 //{
@@ -31,7 +31,7 @@ function HttpPostFormData(uri, formData, callbackFunc) {
             var err = "Error " + " " + status + " " + p3 + " " + p4;
             if (xhr.responseText && xhr.responseText[0] == "{")
                 err = JSON.parse(xhr.responseText).Message;
-            alert(err);
+            //alert(err);
         }
     });
 }
