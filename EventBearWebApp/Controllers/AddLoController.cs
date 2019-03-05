@@ -14,10 +14,10 @@ namespace EventBearWebApp.Controllers
     {
 
         [HttpPost]
-        public ActionResult DropDownDistrict(int provinID)
+        public ActionResult DropDownDistrict(int ProvinID)
         {
             StringBuilder sql = new StringBuilder();
-            sql.AppendFormat("SELECT CAST(ID AS VARCHAR) AS Value ,Name AS Text FROM DB_District WHERE ProvinceID = '{0}' ", provinID );
+            sql.AppendFormat("SELECT CAST(ID AS VARCHAR) AS Value ,Name AS Text FROM DB_District WHERE ProvinceID = '{0}' ", ProvinID );
             var  Dittict = DatabaseUtilities.ExecuteQuery<SelectListItem>(sql).ToList();
             return Json(new { Status = true, data = Dittict });
         }
