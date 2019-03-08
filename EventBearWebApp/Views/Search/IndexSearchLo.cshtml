@@ -13,7 +13,8 @@
     </div>
 </div>
 
-<div class="container-fluid">
+
+<div class="container-fluid">   
     @using (Ajax.BeginForm("_PartialIndexSearchLo", "Search", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "_divPartialIndexSearchLo", InsertionMode = InsertionMode.Replace, OnComplete = "" }))
     {
 
@@ -26,7 +27,7 @@
                     </div>
 
                     <div class="form-group">
-                        @Html.DropDownListFor(Model => Model.Place_Province, new SelectList(ViewBag.provincename, "ID", "Name"), "ระบุจังหวัด", new { @class = "form-control bt" })
+                        @Html.DropDownListFor(Model => Model.Place_Province, new SelectList(ViewBag.provincename, "ID", "Name"), "ระบุจังหวัด", new { @class = "form-control" })
                     </div>
 
                     <div class="form-group">

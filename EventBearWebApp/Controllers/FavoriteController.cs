@@ -11,17 +11,44 @@ namespace EventBearWebApp.Controllers
 {
     public class FavoriteController : Controller
     {
-        public ActionResult _PartialIndexFavorite(int Place_ID)
+        public ActionResult _PartialIndexFavorite(int Customer_ID)
         {
-            StringBuilder sql = new StringBuilder();
-            sql.AppendFormat("SELECT RoomAndZone_Name,RoomAndZone_Price,RoomAndZone_Deposit,RoomAndZone_NumberPeople  FROM RoomAndZone WHERE Place_ID = '{0}'; ", Place_ID);
-            IEnumerable<RoomAndZoneModel> roomAndZone = DatabaseUtilities.ExecuteQuery<RoomAndZoneModel>(sql).ToList();
-            return PartialView("_PartialIndexFavorite", roomAndZone);
+            StringBuilder sql = new StringBuilder();          
+            sql.AppendFormat("SELECT * FROM View_Favorite WHERE Customer_ID = '{0}'; ", Customer_ID);
+            IEnumerable<FavoritePlaceViewModel> Favorite = DatabaseUtilities.ExecuteQuery<FavoritePlaceViewModel>(sql).ToList();
+            return PartialView("_PartialIndexFavorite", Favorite);
         }
+     
         // GET: Favorite
         public ActionResult Index()
         {
             return View();
+        }
+
+        [HttpPost]
+        public string DeleteAlertFavorite(int id)
+        {
+
+            StringBuilder sql = new StringBuilder();
+            List<DBParameter> param = new List<DBParameter>();
+
+
+            if (id > 0)
+            {
+
+                var query = new StringBuilder();
+                query.Append("DELETE FROM Favorite  ");
+                query.Append("WHERE Favorite_ID = @Favorite_ID");
+
+                sql.AppendLine(query.ToString());
+
+                param.Add("@Favorite_ID", id);
+
+                DatabaseUtilities.ExecuteNonQuery(sql, param);
+
+            }
+
+            return "SUCCESS";
         }
     }
 }

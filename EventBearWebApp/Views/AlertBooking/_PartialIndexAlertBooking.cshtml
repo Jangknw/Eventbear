@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RoomAndZoneModel>
+﻿@model IEnumerable<BookingPlaceDetailView>
 
 <div class="row">
     @foreach (var item in Model)
@@ -40,16 +40,17 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
-                <div class="card-body fof">               
-                    <h5 class="card-title fof">ชื่อผู้จอง: มานีมานะ</h5>
-                    <p class="card-text">ติดต่อผู้จอง: 091-234-7890</p>
-                    <h5 class="card-title fof">ชื่อห้อง/โซน: @item.RoomAndZone_Name </h5>
+                <div class="card-body fof">         
+                    <h2 class="card-text fof">Customer_ID: @item.Customer_ID</h2>                        
+                    <h2 class="card-title fof">ชื่อลูฏค้า:@item.Customer_Name @item.Customer_Lastname</h2>
+                    <h2 class="card-text fof">ติดต่อลูกค้า: @item.Customer_Tel</h2>
+                    <h2 class="card-title fof">ชื่อห้อง/โซน: @item.RoomAndZone_Name </h2>
                     <p class="card-text">ราคา: @item.RoomAndZone_Price บาท  ค่ามัดจำ: @item.RoomAndZone_Deposit บาท </p>
                     <p class="card-text">จำนวนคน: @item.RoomAndZone_NumberPeople คน</p>                  
-                    <p class="card-text">สถานนะ: จอง </p>
+                    <p class="card-text">สถานนะ: @item.Booking_Statua </p>          
+                    <p class="card-text">วันที่ใช้: @item.Booking_Date</p>
+                    <p class="card-text">ถึงวันที่: @item.Booking_EndDate</p>
                     <p class="card-text">หมายเหตุ: @item.RoomAndZone_Note</p>
-                    @*<p class="card-text">วันที่ใช้: 21/01/62</p>
-                    <p class="card-text">ถึงวันที่: 21/01/62</p>*@
                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#ModalAlertBookConfirm1">
                         ตกลง
                     </button>

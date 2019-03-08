@@ -1,9 +1,9 @@
-﻿@model IEnumerable<RoomAndZoneModel>
+﻿@model IEnumerable<FavoritePlaceViewModel>
 
 <div class="row">
     @foreach (var item in Model)
     {
-        <div class="matop col-4">
+        <div class="matop item-box-@item.Favorite_ID col-4">
             <div class="card">
                 <div id="SearchLoDetail1" class="carousel slide" data-ride="carousel">
                     <a class="btn" href="#myModalSearchLoDetail1" data-toggle="modal">
@@ -40,23 +40,45 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
-                <div class="card-body fof">                 
-                    <h5 class="card-title fof">ชื่อผู้จอง: มานีมานะ</h5>
-                    <p class="card-text">ติดต่อผู้จอง: 091-234-7890</p>
-                    <P class="card-title">ชื่อห้อง/โซน: @item.RoomAndZone_Name</P>
+                <div class="card-body fof"> 
+                    <h2 class="card-text fof">Customer_ID: @item.Customer_ID</h2>
+                    <h2 class="card-title fof">ชื่อลูกค้า:@item.Customer_Name @item.Customer_Lastname</h2>
+                    <h2 class="card-text fof">ติดต่อลูกค้า: @item.Customer_Tel</h2>
+                    <h2 class="card-title fof">ชื่อห้อง/โซน: @item.RoomAndZone_Name </h2>
                     <p class="card-text">ราคา: @item.RoomAndZone_Price บาท  ค่ามัดจำ: @item.RoomAndZone_Deposit บาท </p>
-                    <p class="card-text">จำนวนคน: @item.RoomAndZone_NumberPeople คน</p>
-                    <p class="card-text">หมายเหตุ: @item.RoomAndZone_Note</p>
-
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#ModalAlertFavorite">
+                    <p class="card-text">จำนวนคน: @item.RoomAndZone_NumberPeople คน</p>                                 
+                    <p class="card-text">หมายเหตุ: @item.RoomAndZone_Note</p> 
+                                                     
+                    @*<button  class="btn btn-info" data-toggle="modal"  data-target="#ModalAlertFavorite">
                         ลบ
-                    </button>
+                    </button>*@
+                   
+                    <button class="btn btn-info" onclick="DeleteAlertFavorite('@item.Favorite_ID')"> ลบ </button>
 
                 </div>
             </div>
         </div>
     }
 </div>
+
+<script>
+    function DeleteAlertFavorite(ID)
+    {
+        $.ajax({
+            url: 'AlertFavorite/DeleteAlertFavorite',
+            type: 'POST',
+            data: { id: ID },
+            //contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                $('.item-box-'+ ID).hide();
+            },
+                error: function () {
+                    alert("error");
+                }
+            });
+    }
+
+</script>
 
 
 
