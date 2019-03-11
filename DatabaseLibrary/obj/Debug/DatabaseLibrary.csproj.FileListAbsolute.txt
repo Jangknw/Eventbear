@@ -1,0 +1,5 @@
+D:\Project\EventBear\EventBearWebApp\DatabaseLibrary\bin\Debug\DatabaseLibrary.dll
+D:\Project\EventBear\EventBearWebApp\DatabaseLibrary\bin\Debug\DatabaseLibrary.pdb
+D:\Project\EventBear\EventBearWebApp\DatabaseLibrary\obj\Debug\DatabaseLibrary.dll
+D:\Project\EventBear\EventBearWebApp\DatabaseLibrary\obj\Debug\DatabaseLibrary.pdb
+D:\Project\EventBear\EventBearWebApp\DatabaseLibrary\obj\Debug\DatabaseLibrary.csprojResolveAssemblyReference.cache

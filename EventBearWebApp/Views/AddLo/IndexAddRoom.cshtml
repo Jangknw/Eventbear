@@ -1,0 +1,178 @@
+﻿@model RoomAndZoneModel
+@{
+    ViewBag.Title = "IndexAddRoom";
+}
+
+
+<div class="container-fluid">
+    <div class="row matop">
+        <div class="col-md-12">
+            <h4 class="search NameEvent">เพิ่มโซนหรือห้องต่างๆได้เล้ยย</h4>
+        </div>
+    </div>
+</div>
+
+
+@using (Html.BeginForm("AddRoomAndZone", "AddLo", FormMethod.Post))
+            {
+    <div class="card" style="width: 18rem; height:100%; width:100%">
+        <div class="card-body">
+
+            <div class="container">
+                <div class="row matop">
+                    <div class="offset-md-2 col-md-2">
+                        <a class="nav-link" href="#">
+                            <div class="carousel-item active">
+                                <img src="~/IMG1/plus.png" class="d-block w80" />
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-2">
+                        <a class="nav-link" href="#">
+                            <div class="carousel-item active">
+                                <img src="~/IMG1/plus.png" class="d-block w80" />
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-2">
+                        <a class="nav-link" href="#">
+                            <div class="carousel-item active">
+                                <img src="~/IMG1/plus.png" class="d-block w80" />
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-2">
+                        <a class="nav-link" href="#">
+                            <div class="carousel-item active">
+                                <img src="~/IMG1/plus.png" class="d-block w80" />
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+
+
+                <div class="row  matop">
+                    <div class="offset-md-2 col-md-4 matop">
+                        <div class="form-group">
+                            @Html.Label("ชื่อห้อง/โซน:")
+                            @Html.TextBoxFor(Model => Model.RoomAndZone_Name,  new { @class = "form-control", placeholder = "เช่น ห้องบอลลูน" })
+                            @*@Html.ValidationMessageFor(Model => Model.Place_Name)*@
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("ราคา")
+                            @Html.TextBoxFor(Model => Model.RoomAndZone_Price,  new { @class = "form-control", placeholder = "เช่น 5,000" })
+                            @*@Html.ValidationMessageFor(Model => Model.Place_Name)*@
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("ค่ามัดจำ")
+                            @Html.TextBoxFor(Model => Model.RoomAndZone_Deposit,  new { @class = "form-control", placeholder = "เช่น 1,000" })
+                            @*@Html.ValidationMessageFor(Model => Model.Place_Name)*@
+                        </div>
+                    </div>
+                    <div class="col-md-4 matop">
+                        <div class="form-group">
+                            @Html.Label("จำนวนคน")
+                            @Html.TextBoxFor(Model => Model.RoomAndZone_NumberPeople, new { @class = "form-control" ,placeholder = "เช่น 20 คน" })
+                            @*@Html.ValidationMessageFor(Model => Model.Place_Name)*@
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("หมายเหตุ")
+                            @Html.TextBoxFor(Model => Model.RoomAndZone_Note, new { @class = "form-control", placeholder = "ระบุเงื่อนไขเพิ่มเติม" })
+                            @*@Html.ValidationMessageFor(Model => Model.Place_Name)*@
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="row matop">
+
+                    <div class="offset-md-2 col-md-4 pd-100">
+                        <div class="col-md-1">
+                            <div class="divbutton">
+                                <button type="button" class="btn btn-dark btt mgL-200 " data-toggle="modal" data-target="#ModalAddRoomSave">
+                                    บันทึก
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+
+                <div class="modal fade" id="ModalAddRoomSave" tabindex="-1" role="dialog" aria-labelledby="ModalAddRoomSave" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="ModalAddRoomSave">เตือน!!!</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>ข้อมูลของคุณจะถูกบันทึกไว้ในระบบ</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-dark" @*data-dismiss="modal"*@>ตกลง</button>
+                                <button type="button" class="btn btn-dark" data-dismiss="modal">ยกเลิก</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+}
+
+@Html.Action("_PartialIndexAddRoom", "AddLo", new { Place_ID = 100003 }) 
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination aa">
+        <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+
+@*Modal*@
+
+
+
+<!-- Modal ยกเลิก-->
+<div class="modal fade" id="ModalAddRoomCancel" tabindex="-1" role="dialog" aria-labelledby="ModalAddRoomCancel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalAddRoomCancel">เตือน!!!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>ข้อมูลที่คุณกรอกจะถูกลบออก!!!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">ตกลง</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+            </div>
+        </div>
+    </div>
+</div>
