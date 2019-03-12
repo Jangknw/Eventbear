@@ -18,9 +18,9 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
+    <IISExpressSSLPort>44317</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
@@ -165,12 +165,14 @@
     <Compile Include="Models\DistrictModel.cs" />
     <Compile Include="Models\FavoriteModel.cs" />
     <Compile Include="Models\FavoritePlaceViewModel.cs" />
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\PlaceAndPlaceTypeModel.cs" />
     <Compile Include="Models\PlaceModel.cs" />
     <Compile Include="Models\PlaceTypeModel.cs" />
     <Compile Include="Models\ProvinceModel.cs" />
     <Compile Include="Models\RoomAndZoneModel.cs" />
     <Compile Include="Models\SearchLoDetailDViewModel.cs" />
+    <Compile Include="Models\UserProfileModel.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
@@ -648,6 +650,7 @@
     <Content Include="Views\Favorite\_PartialIndexFavorite.cshtml" />
     <Content Include="Views\AlertBooking\_PartialIndexAlertBooking.cshtml" />
     <Content Include="Views\AlertFavorite\_PartialIndexAlertFavorite.cshtml" />
+    <Content Include="Views\Home\_Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -677,11 +680,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>56400</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:56400/</IISUrl>
+          <IISUrl>http://localhost:56401/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

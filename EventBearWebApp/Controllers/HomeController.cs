@@ -62,5 +62,33 @@ namespace EventBearWebApp.Controllers
 
             return View();
         }
+
+        [HttpPost]
+        public ActionResult Login(LoginModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                StringBuilder sql = new StringBuilder();
+                List<DBParameter> param = new List<DBParameter>();
+                sql.AppendFormat("SELECT Customer_Email AS Email ,Customer_name +' ' +Customer_Lastname AS [Name]  FROM Customer WHERE Customer_Email = @Email AND Customer_Password = @Password ");
+                param.Add("@Email", model.Email);
+                param.Add("@Password", model.Password);
+                var userprofile = DatabaseUtilities.ExecuteQuery<UserProfileModel>(sql, param.ToList()).FirstOrDefault();
+                if (userprofile != null)
+                {
+                    Session["Email"] = userprofile.Email;
+                    Session["Name"] = userprofile.Name;
+                    return RedirectToAction("Index", "Home");
+                }
+                 
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult Logout()
+        {
+            Session.Abandon();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

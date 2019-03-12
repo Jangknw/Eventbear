@@ -1,0 +1,123 @@
+﻿@model LoginModel
+
+@using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "form-inline  my-1 my-lg-0" }))
+{    <!-- Modal Login -->
+    <div class="modal fade" id="myModal_Login" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content failoy">
+                <div class="form-group col-md-12">
+                    <h3 class="pp">ยินดีต้อนรับ</h3>
+                    <button data-remodal-action="close" class="remodal-close uo"></button>
+                </div>
+                <span class="tt">เข้าสู่ระบบ EventBear</span>
+                <div class="form-row">
+                    <div class="form-group Coc offset-2 col-md-12">
+                        <div class="form-groupn has-feedback input-login-email ">
+                            @Html.TextBoxFor(Model => Model.Email, new { type = "email", @class = "form-control dd login-email", placeholder = "อีเมล", autocomplete = "off", @style = "width:350px;" })
+                            @Html.ValidationMessageFor(Model => Model.Email)                          
+                            @*<input type="email" class="form-control dd login-email" style="width:350px;" placeholder="อีเมล" name="Email" autocomplete="off">*@
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group Coc  offset-2 col-md-12">
+                        @Html.PasswordFor(Model =>Model.Password, new { @class = "form-control dd no-borde", placeholder = "รหัสผ่าน", @style = "width:350px" })
+                        @Html.ValidationMessageFor(Model => Model.Email)
+                        @*<input type="password" class="form-control dd no-border" style="width:350px;" placeholder="รหัสผ่าน" name="Password">*@
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group  offset-2 col-md-12">
+                        <label>
+                            <input type="checkbox" style="vertical-align: top;font-size:15px;" name="RememberMe" value="false">
+                            <div class="dd" style="margin-top:4px;margin-left:3px; display:inline-block">จำรหัสผ่าน</div>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group offset-2 Coc col-md-12">
+                        <button type="submit" class="btn btn-primary mm">เข้าสู่ระบบ</button>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group offset-2 col-md-12">
+                        <p>
+                            <a class="btn btn-link link-user-register" href="#">สมัครสมาชิก</a> | <a class="btn btn-link btn-forgot-password" href="#">คุณลืมรหัสผ่านใช่ไหม?</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group offset-5 col-md-12">
+                        <h6>หรือ</h6>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group offset-2 col-md-12">
+                        <button type="submit" class="btn btn-primary mm ">เข้าสู่ระบบด้วย FACEBOOK</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+
+    
+
+
+    <!-- Modal Register -->
+    <div class="modal fade" id="myModal_Register" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content failoy">
+                <div class="form-group col-md-12">
+                    <h3 class="wer">สมัครสมาชิก Event Bear</h3>
+                    <button data-remodal-action="close" class="remodal-close uo1"></button>
+                </div>
+                <div class="form-row">
+                    <div class="form-group tio offset-1 col-md-12">
+                        <label for="inputFirstname" class="phot" style="margin-right:40px;">ชื่อ</label>
+                        <input type="text" class="form-control ptp" id="inputFirstname" placeholder="">
+                    </div>
+                    <div class="form-group tio offset-1 col-md-12">
+                        <label for="inputLastname" class="phot" style="margin-right:10px;">นามสกุล</label>
+                        <input type="text" class="form-control ptp" id="inputLastname">
+                    </div>
+                    <div class="form-group tio offset-1 col-md-12">
+                        <label for="inputEmail4" class="phot" style="margin-right:30px;">อีเมล</label>
+                        <input type="email" class="form-control ptp" id="inputEmail4" placeholder="">
+                    </div>
+                    <div class="form-group tio offset-1 col-md-12">
+                        <label for="inputPassword4" class="phot" style="margin-right:10px;">รหัสผ่าน</label>
+                        <input type="password" class="form-control ptp" id="inputPassword4" placeholder="">
+                    </div>
+                    <div class="form-group tio  col-md-12">
+                        <label for="inputPassword4" class="phot" style="margin-right:10px;">ยืนยันรหัสผ่าน</label>
+                        <input type="text" class="form-control ptp" id="inputPassword5" placeholder="">
+                    </div>
+                    <div class="form-group tio offset-1 col-md-12">
+                        <label for="inputNumber" class="phot" style="margin-right:10px;">เบอร์โทร</label>
+                        <input type="text" class="form-control ptp" id="inputNumber">
+                    </div>
+                </div>
+                <div class="form-row ">
+                    <div class="form-group tio  col-md-12">
+                        <button type="submit" class="btn btn-primary mmm" style="margin-left:100px;">เข้าสู่ระบบ</button>
+                    </div>
+                    <div class="form-group ti col-md-12">
+                        <a class="btn btn-link link-user-login" style="margin-left:50px;" href="#">มีบัญชี Event Bear อยู่แล้ว? เข้าสู่ระบบ</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
