@@ -3,7 +3,7 @@
 <div class="row">
     @foreach (var item in Model)
     {
-        <div class="matop col-4">
+        <div class="matop item-box-@item.Booking_ID col-4">
             <div class="card">
                 <div id="SearchLoDetail1" class="carousel slide" data-ride="carousel">
                     <a class="btn" href="#myModalSearchLoDetail1" data-toggle="modal">
@@ -40,31 +40,98 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
-                <div class="card-body fof">         
-                    <h2 class="card-text fof">Customer_ID: @item.Customer_ID</h2>                        
-                    <h2 class="card-title fof">ชื่อลูฏค้า:@item.Customer_Name @item.Customer_Lastname</h2>
+                <div class="card-body fof"> 
+                    <p>RoomAndZone_ID: @item.RoomAndZone_ID</p>        
+                    <h2 class="card-text fof">Customer_ID: @item.Customer_ID</h2>      
+                    <h2 class="card-text fof">Booking_ID: @item.Booking_ID</h2>                     
+                    <h2 class="card-title fof">ชื่อลูกค้า:@item.Customer_Name @item.Customer_Lastname</h2>
                     <h2 class="card-text fof">ติดต่อลูกค้า: @item.Customer_Tel</h2>
                     <h2 class="card-title fof">ชื่อห้อง/โซน: @item.RoomAndZone_Name </h2>
                     <p class="card-text">ราคา: @item.RoomAndZone_Price บาท  ค่ามัดจำ: @item.RoomAndZone_Deposit บาท </p>
                     <p class="card-text">จำนวนคน: @item.RoomAndZone_NumberPeople คน</p>                  
-                    <p class="card-text">สถานนะ: @item.Booking_Statua </p>          
+                    <p class="card-text">สถานนะ: @item.Booking_Statua </p>       
                     <p class="card-text">วันที่ใช้: @item.Booking_Date</p>
                     <p class="card-text">ถึงวันที่: @item.Booking_EndDate</p>
                     <p class="card-text">หมายเหตุ: @item.RoomAndZone_Note</p>
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#ModalAlertBookConfirm1">
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#ModalAlertBookConfirm1" onclick="UpdateBooking('@item.Booking_ID')" >
                         ตกลง
                     </button>
-
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#ModalAlertBookDelete">
+                    <button class="btn btn-info" onclick="DeleteAlertBooking('@item.Booking_ID')"> ลบ </button>
+                    @*<button type="button" class="btn btn-info" data-toggle="modal" data-target="#ModalAlertBookDelete">
                         ลบ
-                    </button>
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
-                        แก้ไข
-                    </button>
+                    </button>*@                    
+
                 </div>
             </div>
         </div>
+
+
+          <!-- Modal ลบ-->
+        <div class="modal fade" id="ModalAlertBookDelete" tabindex="-1" role="dialog" aria-labelledby="ModalAlertBookDelete" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title fof" id="ModalAlertBookDelete">เตือน!!!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="fof">ข้อมูลการจองจะถูกยกเลิก!!!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-info" onclick="DeleteAlertBooking('@item.Booking_ID')"> ตกลง </button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     }
 </div>
 
 
+<script>
+    function DeleteAlertBooking(ID)
+    {
+        $.ajax({
+            url: '@Url.Action("DeleteAlertBooking")',
+            type: 'POST',
+            data: { id: ID },
+            //contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                $('.item-box-'+ ID).hide();
+            },
+                error: function () {
+                    alert("error");
+                }
+            });
+    }
+
+    function UpdateBooking(ID) {
+        $('.bookingID').val(ID);
+        //$('.customerID').val(ID);
+        //$('.roomAndZoneID').val(ID);
+    }
+    
+</script>
+
+@*<script>
+    function UpdateBooking(ID)
+    {
+        $.ajax({
+            url: '@Url.Action("UpdateBooking")',
+            type: 'POST',
+            data: { id: ID },
+            //contentType: 'application/json; charset=utf-8',
+            //success: function (data) {
+            //    $('.item-box-'+ ID).hide();
+            //},
+                error: function () {
+                    alert("error");
+                }
+            });
+    }
+
+</script>*@

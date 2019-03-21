@@ -1,0 +1,70 @@
+﻿@model  EventBearWebApp.Models.PlaceModel
+
+@{
+    ViewBag.Title = "ListAddRoom";
+}
+
+@Html.Partial("_EditRoomModal")
+
+<div class="modal fade" id="ModalAddRoomSave" tabindex="-1" role="dialog" aria-labelledby="ModalAddRoomSave" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalAddRoomSave">เตือน!!!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>ข้อมูลของคุณจะถูกบันทึกไว้ในระบบ</p>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-dark" @*data-dismiss="modal"*@>ตกลง</button>
+                <button type="button" class="btn btn-dark" data-dismiss="modal">ยกเลิก</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.Action("_PartialIndexAddRoom", "AddLo", new { Place_ID = 100003 })
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination aa">
+        <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+
+@*Modal*@
+<!-- Modal ยกเลิก-->
+<div class="modal fade" id="ModalAddRoomCancel" tabindex="-1" role="dialog" aria-labelledby="ModalAddRoomCancel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalAddRoomCancel">เตือน!!!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>ข้อมูลที่คุณกรอกจะถูกลบออก!!!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">ตกลง</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+            </div>
+        </div>
+    </div>
+</div>

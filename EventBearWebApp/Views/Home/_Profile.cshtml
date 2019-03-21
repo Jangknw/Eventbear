@@ -1,0 +1,105 @@
+﻿@model CustomerModel
+
+@using (Html.BeginForm("Profile", "Home", FormMethod.Post, new { @class = "form-inline  my-1 my-lg-0" }))
+{
+    <!-- Modal -->
+    <div class="modal fade" id="myModal_Profile" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fof" id="myModal_Profile">ข้อมูลส่วนตัว</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="form-group col-md-12">
+                    <div class="row matop width-700">
+                        <div class="offset-md-2 col-md-4 matop">
+                            <div class="form-group tio offset-1 col-md-12">
+                                @Html.Label(("Testประเภทลูกค้า"), new { @class = "phot" })
+                                @Html.TextBoxFor(Model => Model.CustomerType_ID, new { @class = "form-control ptp" })
+                            </div>
+                            <div class="form-group tio offset-1 col-md-12">
+                                @Html.Label(("ชื่อ"), new { @class = "phot" })
+                                @Html.TextBoxFor(Model => Model.Customer_Name, new { @class = "form-control ptp" })
+                            </div>
+
+                            <div class="form-group tio offset-1 col-md-12">
+                                @Html.Label(("นามสกุล"), new { @class = "phot" })
+                                @Html.TextBoxFor(Model => Model.Customer_Lastname, new { @class = "form-control ptp" })
+                            </div>
+
+                            <div class="form-group tio offset-1 col-md-12">
+                                @Html.Label(("อีเมล"), new { @class = "phot" })
+                                @Html.TextBoxFor(Model => Model.Customer_Email, new { @class = "form-control ptp" })
+                            </div>
+
+                            <div class="form-group tio offset-1 col-md-12">
+                                @Html.Label(("รหัสผ่าน"), new { @class = "phot" })
+                                @Html.TextBoxFor(Model => Model.Customer_Password, new { @class = "form-control ptp" })
+                            </div>
+
+                            <div class="form-group tio offset-1 col-md-12">
+                                @Html.Label(("ยืนยันรหัสผ่าน"), new { @class = "phot" })
+                                @Html.TextBoxFor(Model => Model.Customer_ConfirmPassword, new { @class = "form-control ptp" })
+                            </div>
+
+                            <div class="form-group tio offset-1 col-md-12">
+                                @Html.Label(("เบอร์โทร"), new { @class = "phot" })
+                                @Html.TextBoxFor(Model => Model.Customer_Tel, new { @class = "form-control ptp" })
+                            </div>
+                        </div>
+                        <div class="col-md-4 matop">
+                            <div class="form-group tio offset-1 col-md-12">
+                                @Html.Label(("จังหวัด"), new { @class = "phot" })
+                                @Html.TextBoxFor(Model => Model.Customer_Province, new { @class = "form-control ptp" })
+                            </div>
+
+
+                            <div class="form-group tio offset-1 col-md-12">
+                                @Html.Label(("เขต/อำเภอ"), new { @class = "phot" })
+                                @Html.TextBoxFor(Model => Model.Customer_District, new { @class = "form-control ptp" })
+                            </div>
+
+
+                            <div class="form-group tio offset-1 col-md-12">
+                                @Html.Label(("แขวง/ตำบล"), new { @class = "phot" })
+                                @Html.TextBoxFor(Model => Model.Customer_SubDistrict, new { @class = "form-control ptp" })
+                            </div>
+
+
+                            <div class="form-group tio offset-1 col-md-12">
+                                @Html.Label(("เลขที่"), new { @class = "phot" })
+                                @Html.TextBoxFor(Model => Model.Customer_Address, new { @class = "form-control ptp" })
+                            </div>
+
+
+                            <div class="form-group tio offset-1 col-md-12">
+                                @Html.Label(("ถนน"), new { @class = "phot" })
+                                @Html.TextBoxFor(Model => Model.Customer_Road, new { @class = "form-control ptp" })
+                            </div>
+
+                            <div class="form-group tio offset-1 col-md-12">
+                                @Html.Label(("ตรอก/ซอย"), new { @class = "phot" })
+                                @Html.TextBoxFor(Model => Model.Customer_Alley, new { @class = "form-control ptp" })
+                            </div>
+
+                            <div class="form-group tio offset-1 col-md-12">
+                                @Html.Label(("รหัสไปรษณีย์"), new { @class = "phot" })
+                                @Html.TextBoxFor(Model => Model.Customer_Zipcode, new { @class = "form-control ptp" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">ตกลง</button>
+                        <button type="button" class="btn btn-primary">ยกเลิก</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+

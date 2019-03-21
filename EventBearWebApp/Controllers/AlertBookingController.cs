@@ -23,85 +23,105 @@ namespace EventBearWebApp.Controllers
         // GET: AlertBooking
         public ActionResult Index()
         {
-            return View();
+            var temp = DatabaseUtilities.ExecuteQuery<BookingModel>
+             ("Select * from Booking Where Booking_ID = 100059").LastOrDefault();
+            return View(temp);
+            //return View();
         }
 
+        [HttpPost]
+        public ActionResult UpdateBooking(BookingModel model)
+        {
+
+            StringBuilder sql = new StringBuilder();
+            List<DBParameter> param = new List<DBParameter>();
+
+            if (model.Booking_ID != null && model.Booking_ID > 0)
+            {
+                var query = new StringBuilder();
+                query.Append("UPDATE Booking SET ");
+                query.Append("Booking_Statua = @Booking_Statua,");
+                query.Append("Booking_Date = @Booking_Date,");
+                query.Append("Booking_EndDate = @Booking_EndDate ");
+                query.Append("WHERE Booking_ID = @Booking_ID");
+
+                sql.AppendLine(query.ToString());
+
+                param.Add("@Booking_Statua", model.Booking_Statua);
+                param.Add("@Booking_Date", model.Booking_Date);
+                param.Add("@Booking_EndDate", model.Booking_EndDate);
+                param.Add("@Booking_ID", model.Booking_ID);
+
+                DatabaseUtilities.ExecuteNonQuery(sql, param);
+
+            }
+            //else
+            //{
+
+
+            //}
+
+
+            return View("Index");
+        }
+
+
         //[HttpPost]
-        //public ActionResult AddBooking(BookingModel model)
+        //public string UpdateBooking(int id)
         //{
 
         //    StringBuilder sql = new StringBuilder();
         //    List<DBParameter> param = new List<DBParameter>();
 
-        //    if (ModelState.IsValid)
+
+        //    if (!string.IsNullOrWhiteSpace(id.ToSafeString()))
         //    {
-        //        if (model.Booking_ID != null && model.Booking_ID > 0)
-        //        {
-        //            //int rowAffect = DatabaseUtilities.ExecuteNonQuery(String.Format(@" UPDATE Place SET Place_Name = '{0}' where Place_ID = {1}", model.Place_Name, model.Place_ID));
-        //            var query = new StringBuilder();
-        //            query.Append("UPDATE Booking SET ");
-        //            query.Append("Customer_ID,");
-        //            query.Append("RoomAndZone_ID,");
-        //            query.Append("Booking_ID,");
-        //            query.Append("Booking_Statua,");
-        //            query.Append("Booking_Date,");
-        //            query.Append("Booking_EndDate )");
 
+        //        var query = new StringBuilder();
+        //        query.Append("UPDATE Booking SET ");
+        //        query.Append("Booking_Statua,");
+        //        query.Append("Booking_Date,");
+        //        query.Append("Booking_EndDate )");
+        //        query.Append("WHERE Booking_ID = @Booking_ID");
 
-        //            sql.AppendLine(query.ToString());
+        //        sql.AppendLine(query.ToString());
 
-        //            param.Add("@Customer_ID", 100002);
-        //            param.Add("@RoomAndZone_ID", model.RoomAndZone_ID);
-        //            param.Add("@Booking_Statua", model.Booking_Statua);
-        //            param.Add("@Booking_Date", model.Booking_Date);
-        //            param.Add("@Booking_EndDate", model.Booking_EndDate.ToSafeString());
+        //        param.Add("@Booking_Statua", id);
+        //        param.Add("@Booking_Date", id);
+        //        param.Add("@Booking_EndDate", id);
+        //        param.Add("@Booking_ID", id);
 
-        //            DatabaseUtilities.ExecuteNonQuery(sql, param);
-
-        //        }
-        //        else
-        //        {
-        //            //sql.AppendLine(" INSERT INTO Place (Customer_ID,PlaceType_ID, Place_Name, Place_Address, Place_Alley, Place_Road, Place_Province, Place_District,Place_SubDistrict ,Place_Zipcode,Place_Tel) ");
-        //            //sql.AppendLine(" VALUES(@Customer_ID,@PlaceType_ID, @Place_Name, @Place_Address, @Place_Alley, @Place_Road,@Place_Province,@Place_District, @Place_SubDistrict ,@Place_Zipcode,@Place_Tel  ) ");
-        //            //param.Add("@Customer_ID", model.Customer_ID);
-
-        //            var query = new StringBuilder();
-        //            query.Append("INSERT INTO Booking (");
-        //            query.Append("Customer_ID,");
-        //            query.Append("RoomAndZone_ID,");
-        //            query.Append("Booking_ID,");
-        //            query.Append("Booking_Statua,");
-        //            query.Append("Booking_Date,");
-        //            query.Append("Booking_EndDate )");
-
-
-        //            var queryParam = new StringBuilder();
-        //            queryParam.Append(" VALUES (");
-        //            queryParam.Append("@Customer_ID,");
-        //            queryParam.Append("@RoomAndZone_ID,");
-        //            queryParam.Append("@Booking_Statua,");
-        //            queryParam.Append("@Booking_Date,");
-        //            queryParam.Append("@Booking_EndDate )");
-
-
-        //            sql.AppendLine(query.ToString());
-        //            sql.AppendLine(queryParam.ToString());
-
-        //            param.Add("@Customer_ID", 100002);
-        //            param.Add("@RoomAndZone_ID", model.RoomAndZone_ID);
-        //            param.Add("@Booking_Statua", model.Booking_Statua);
-        //            param.Add("@Booking_Date", model.Booking_Date);
-        //            param.Add("@Booking_EndDate", model.Booking_EndDate.ToSafeString());
-        //            //param.Add("@RoomAndZone_ID", model.RoomAndZone_ID);                    
-
-        //            DatabaseUtilities.ExecuteNonQuery(sql, param);
-
-        //        }
+        //        DatabaseUtilities.ExecuteNonQuery(sql, param);
 
         //    }
 
-        //    return View("Index");
+        //    return "SUCCESS";
         //}
+
+        [HttpPost]
+        public string DeleteAlertBooking(int id)
+        {
+
+            StringBuilder sql = new StringBuilder();
+            List<DBParameter> param = new List<DBParameter>();
+
+            if (id > 0)
+            {
+
+                var query = new StringBuilder();
+                query.Append("DELETE FROM Booking ");
+                query.Append("WHERE Booking_ID = @Booking_ID");
+
+                sql.AppendLine(query.ToString());
+
+                param.Add("@Booking_ID", id);
+
+                DatabaseUtilities.ExecuteNonQuery(sql, param);
+
+            }
+
+            return "SUCCESS";
+        }
 
     }
 }

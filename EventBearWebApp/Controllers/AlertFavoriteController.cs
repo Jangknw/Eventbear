@@ -48,7 +48,7 @@ namespace EventBearWebApp.Controllers
             {
 
                 var query = new StringBuilder();
-                query.Append("DELETE FROM Favorite  ");
+                query.Append("DELETE FROM Favorite ");
                 query.Append("WHERE Favorite_ID = @Favorite_ID");
 
                 sql.AppendLine(query.ToString());

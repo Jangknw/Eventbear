@@ -3,3 +3,8 @@ D:\Project\EventBear\EventBearWebApp\DatabaseLibrary\bin\Debug\DatabaseLibrary.p
 D:\Project\EventBear\EventBearWebApp\DatabaseLibrary\obj\Debug\DatabaseLibrary.dll
 D:\Project\EventBear\EventBearWebApp\DatabaseLibrary\obj\Debug\DatabaseLibrary.pdb
 D:\Project\EventBear\EventBearWebApp\DatabaseLibrary\obj\Debug\DatabaseLibrary.csprojResolveAssemblyReference.cache
+D:\EventBear-github\Eventbear\DatabaseLibrary\bin\Debug\DatabaseLibrary.dll
+D:\EventBear-github\Eventbear\DatabaseLibrary\bin\Debug\DatabaseLibrary.pdb
+D:\EventBear-github\Eventbear\DatabaseLibrary\obj\Debug\DatabaseLibrary.csprojResolveAssemblyReference.cache
+D:\EventBear-github\Eventbear\DatabaseLibrary\obj\Debug\DatabaseLibrary.dll
+D:\EventBear-github\Eventbear\DatabaseLibrary\obj\Debug\DatabaseLibrary.pdb

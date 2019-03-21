@@ -4,6 +4,8 @@
     ViewBag.Title = "Favorite";
 }
 
+@using (Html.BeginForm("Index", "Favorite", FormMethod.Post))
+{
 <div class="container-fluid">
     <div class="row matop">
         <div class="col-md-12">
@@ -33,51 +35,7 @@
     </ul>
 </nav>
 
-
-
-
-        <!-- Modal -->
-<div class="modal fade" id="ModalFavoriteBooking" tabindex="-1" role="dialog" aria-labelledby="ModalFavoriteBooking" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title fof" id="ModalFavoriteBooking">เตือน!!!</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p class="fof">การจองของคุณถูกส่งไปยังผู้ให้เช่าแล้ว กรุณารอการติดต่อกลับ</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">ตกลง</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<!-- Modal -->
-<div class="modal fade" id="ModalFavoriteDelete" tabindex="-1" role="dialog" aria-labelledby="ModalFavoriteDelete" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title fof" id="ModalFavoriteDelete">เตือน!!!</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p class="fof">ข้อมูลของคุณจะถูกลบออกจากหน้านี้!!!</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">ตกลง</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-            </div>
-        </div>
-    </div>
-</div>
+}
 
 
 

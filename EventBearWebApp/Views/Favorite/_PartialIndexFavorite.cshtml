@@ -3,7 +3,7 @@
 <div class="row">
     @foreach (var item in Model)
     {
-        <div class="matop item-box-@item.Favorite_ID col-4">
+        <div class="matop col-4">
             <div class="card">
                 <div id="SearchLoDetail1" class="carousel slide" data-ride="carousel">
                     <a class="btn" href="#myModalSearchLoDetail1" data-toggle="modal">
@@ -50,14 +50,62 @@
                     <p class="card-text">ตำแหน่งที่ตั้ง: @item.Place_Address ซอย @item.Place_Alley ถนน @item.Place_Road</p>
                     <p class="card-text">แขวง @item.Place_SubDistrict เขต @item.Place_District จังหวัด @item.Place_Province</p>
                     <p class="card-text">รหัสไปรษณีย์ @item.Place_Zipcode </p>
-                    <p class="card-text">หมายเหตุ: @item.RoomAndZone_Note</p>                                          
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#ModalFavoriteBooking">
+                    <p class="card-text">หมายเหตุ: @item.RoomAndZone_Note</p>    
+                    <button class="btn btn-secondary" onclick="InsertBooking('@item.RoomAndZone_ID')"> จอง </button>                                      
+                    @*<button type="button" class="btn btn-info" data-toggle="modal" data-target="#ModalFavoriteBooking">
                         จอง
-                    </button>
+                    </button>*@
                     <button class="btn btn-info" onclick="DeleteAlertFavorite('@item.Favorite_ID')"> ลบ </button>
+                    @*<button type="button" class="btn btn-info" data-toggle="modal" data-target="#ModalFavoriteDelete">
+                        ลบ
+                    </button>*@
                 </div>
             </div>
         </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="ModalFavoriteBooking" tabindex="-1" role="dialog" aria-labelledby="ModalFavoriteBooking" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title fof" id="ModalFavoriteBooking">เตือน!!!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="fof">การจองของคุณถูกส่งไปยังผู้ให้เช่าแล้ว กรุณารอการติดต่อกลับ</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" onclick="InsertBooking('@item.RoomAndZone_ID')"> ตกลง </button>
+                        @*<button type="button" class="btn btn-secondary" data-dismiss="modal">ตกลง</button>*@
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+          <!-- Modal ลบ-->
+        <div class="modal fade" id="ModalFavoriteDelete" tabindex="-1" role="dialog" aria-labelledby="ModalFavoriteDelete" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title fof" id="ModalFavoriteDelete">เตือน!!!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="fof">ข้อมูลการจองจะถูกยกเลิก!!!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-info" onclick="DeleteAlertFavorite('@item.Favorite_ID')"> ตกลง </button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                    </div>
+                </div>
+            </div>
+        </div>      
+
     }
 </div>
 
@@ -67,10 +115,10 @@
     function DeleteAlertFavorite(ID)
     {
         $.ajax({
-            url: 'AlertFavorite/DeleteAlertFavorite',
+            url: '@Url.Action("DeleteAlertFavorite")',
             type: 'POST',
             data: { id: ID },
-            //contentType: 'application/json; charset=utf-8',
+            contentType: 'application/json; charset=utf-8',
             success: function (data) {
                 $('.item-box-'+ ID).hide();
             },
@@ -81,3 +129,27 @@
     }
 
 </script>
+
+<script>
+    function InsertBooking(ID) {
+
+        $.ajax({
+            url: '@Url.Action("InsertBooking")',
+            type: 'POST',
+            data: { id: ID },
+            success: function (data) {
+
+                //alert(data)
+
+                //$('.item-box-' + ID).hide();
+            },
+            error: function (e) {
+                alert(e);
+            }
+        });
+    }
+
+</script>
+
+
+

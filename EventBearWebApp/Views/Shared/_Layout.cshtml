@@ -7,8 +7,10 @@
 
 
     @Styles.Render("~/Content/css")
-
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryui")
 
 </head>
 <body>
@@ -50,9 +52,10 @@
 
             <div class="form-inline my-1 my-lg-0">
                 @if (Session["Email"] != null)
-                { 
-                   <div class="nav-link  Login " style="color:black"> ยินดีต้อนรับ @Session["Email"].ToString()  </div>
-                   <a class="nav-link  Register"  style="color:black" href="@Url.Action("Logout", "Home")">ออกจากระบบ</a>
+                {
+                    <a class="nav-link  Login " style="color:black" data-toggle="modal" data-target="#myModal_Profile"> @*ยินดีต้อนรับ*@ @Session["Name"].ToString()</a>
+                    @*<div class="nav-link  Login " style="color:black"> ยินดีต้อนรับ @Session["Name"].ToString()  </div>*@
+                    <a class="nav-link  Register" style="color:black" href="@Url.Action("Logout", "Home")">ออกจากระบบ</a>
                 }
                 else
                 {
@@ -60,15 +63,116 @@
 
                     <a class="nav-link Register" style="color:black" data-toggle="modal" data-target="#myModal_Register">สมัครสมาชิก</a>
                 }
-                
+
             </div>
 
-            
+            @*<form class="form-inline  my-1 my-lg-0">
+                <a class="nav-link  Login " style="color:black" data-toggle="modal" data-target="#myModal_Login">เข้าสู่ระบบ</a>
+                <!-- Modal Login -->
+                <div class="modal fade" id="myModal_Login" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content failoy1">
+                            <div class="form-group col-md-12">                             
+                                <h3 class="pp">ยินดีต้อนรับ</h3>
+                                <button data-remodal-action="close" class="remodal-close uo"></button>
+                            </div>
+                            <span class="tt">เข้าสู่ระบบ EventBear</span>
+                            <div class="form-row">
+                                <div class="form-group Coc offset-2 col-md-12">
+                                    <div class="form-groupn has-feedback input-login-email ">
+                                        <input type="email" class="form-control dd login-email" style="width:350px;" placeholder="อีเมล" name="Email" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group Coc  offset-2 col-md-12">
+                                    <input type="password" class="form-control dd no-border" style="width:350px;" placeholder="รหัสผ่าน" name="Password">         
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group  offset-2 col-md-12">                               
+                                        <label>
+                                            <input type="checkbox" style="vertical-align: top;font-size:15px;" name="RememberMe" value="false">
+                                            <div class="dd" style="margin-top:4px;margin-left:3px; display:inline-block">จำรหัสผ่าน</div>
+                                        </label>                                
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group offset-2 Coc col-md-12">
+                                        <button type="submit" class="btn btn-primary mm">เข้าสู่ระบบ</button>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-row">
+                                    <div class="form-group offset-2 col-md-12">
+                                        <p>
+                                            <a class="btn btn-link link-user-register" href="#">สมัครสมาชิก</a> | <a class="btn btn-link btn-forgot-password" href="#">คุณลืมรหัสผ่านใช่ไหม?</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+
+                <a class="nav-link Register" style="color:black" data-toggle="modal" data-target="#myModal_Register">สมัครสมาชิก</a>
+                <!-- Modal Register -->
+                <div class="modal fade" id="myModal_Register" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content failoy">
+                            <div class="form-group col-md-12">                           
+                                <h3 class="wer">สมัครสมาชิก Event Bear</h3>    
+                                <button data-remodal-action="close" class="remodal-close uo1"></button>                                                   
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group tio offset-1 col-md-12">
+                                    <label for="inputFirstname" class="phot" style="margin-right:40px;">ชื่อ</label>
+                                    <input type="text" class="form-control ptp" id="inputFirstname" placeholder="">
+                                </div>
+                                <div class="form-group tio offset-1 col-md-12">
+                                        <label for="inputLastname" class="phot" style="margin-right:10px;">นามสกุล</label>
+                                        <input type="text" class="form-control ptp" id="inputLastname">
+                                </div>
+                                <div class="form-group tio offset-1 col-md-12">
+                                    <label for="inputEmail4" class="phot" style="margin-right:30px;">อีเมล</label>
+                                    <input type="email" class="form-control ptp" id="inputEmail4" placeholder="">
+                                </div>
+                                <div class="form-group tio offset-1 col-md-12">
+                                    <label for="inputPassword4" class="phot" style="margin-right:10px;">รหัสผ่าน</label>
+                                    <input type="password" class="form-control ptp" id="inputPassword4" placeholder="">
+                                </div>
+                                <div class="form-group tio  col-md-12">
+                                    <label for="inputPassword4" class="phot" style="margin-right:10px;">ยืนยันรหัสผ่าน</label>
+                                    <input type="text" class="form-control ptp" id="inputPassword5" placeholder="">
+                                </div>
+                                <div class="form-group tio offset-1 col-md-12">
+                                    <label for="inputNumber" class="phot" style="margin-right:10px;">เบอร์โทร</label>
+                                    <input type="text" class="form-control ptp" id="inputNumber">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group tio  col-md-12">
+                                    <button type="submit" class="btn btn-primary mmm" style="margin-left:100px;">เข้าสู่ระบบ</button>
+                                </div> 
+                                <div class="form-group ti col-md-12">                                 
+                                        <a class="btn btn-link link-user-login"style="margin-left:50px;"href="#">มีบัญชี Event Bear อยู่แล้ว? เข้าสู่ระบบ</a>                               
+                                </div>
+                                </div>
+                           
+                        </div>
+                    </div>
+                </div>
+
+            </form>*@
         </div>
     </nav>
-    <div class="container body-content">
-        
 
+    <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
@@ -76,9 +180,10 @@
         </footer>
     </div>
 
-
+    @*@Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryui")*@
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -1,0 +1,59 @@
+﻿@model RoomAndZoneModel
+@using (Html.BeginForm("AddRoomAndZone", "AddLo", FormMethod.Post))
+{
+    <!-- Modal -->
+    <div class="modal fade" id="ModalEditRoom" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fof" id="ModalEditRoom">แก้ไขข้อมูลห้อง/โซน</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="form-group col-md-12">
+                    <div class="row  matop">
+                        <div class="offset-md-2 col-md-4 matop">
+                            <div class="form-group">
+                                @Html.Label(("ชื่อห้อง/โซน:"), new { @class = "rop" })
+                                @Html.TextBoxFor(Model => Model.RoomAndZone_Name, new { @class = "form-control", placeholder = "เช่น ห้องบอลลูน" })
+                                @*@Html.ValidationMessageFor(Model => Model.Place_Name)*@
+                            </div>
+                            <div class="form-group">
+                                @Html.Label(("ราคา"), new { @class = "rop" })
+                                @Html.TextBoxFor(Model => Model.RoomAndZone_Price, new { @class = "form-control", placeholder = "เช่น 5,000" })
+                                @*@Html.ValidationMessageFor(Model => Model.Place_Name)*@
+                            </div>
+                            <div class="form-group">
+                                @Html.Label(("ค่ามัดจำ"), new { @class = "rop" })
+                                @Html.TextBoxFor(Model => Model.RoomAndZone_Deposit, new { @class = "form-control", placeholder = "เช่น 1,000" })
+                                @*@Html.ValidationMessageFor(Model => Model.Place_Name)*@
+                            </div>
+                        </div>
+                        <div class="col-md-4 matop">
+                            <div class="form-group">
+                                @Html.Label(("จำนวนคน"), new { @class = "rop" })
+                                @Html.TextBoxFor(Model => Model.RoomAndZone_NumberPeople, new { @class = "form-control", placeholder = "เช่น 20 คน" })
+                                @*@Html.ValidationMessageFor(Model => Model.Place_Name)*@
+                            </div>
+
+                            <div class="form-group">
+                                @Html.Label(("หมายเหตุ"), new { @class = "rop" })
+                                @Html.TextBoxFor(Model => Model.RoomAndZone_Note, new { @class = "form-control", placeholder = "ระบุเงื่อนไขเพิ่มเติม" })
+                                @*@Html.ValidationMessageFor(Model => Model.Place_Name)*@
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">ตกลง</button>
+                        <button type="button" class="btn btn-primary">ยกเลิก</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

@@ -32,12 +32,11 @@ namespace EventBearWebApp.Controllers
             StringBuilder sql = new StringBuilder();
             List<DBParameter> param = new List<DBParameter>();
 
-
             if (id > 0)
             {
 
                 var query = new StringBuilder();
-                query.Append("DELETE FROM Favorite  ");
+                query.Append("DELETE FROM Favorite ");
                 query.Append("WHERE Favorite_ID = @Favorite_ID");
 
                 sql.AppendLine(query.ToString());
@@ -50,5 +49,39 @@ namespace EventBearWebApp.Controllers
 
             return "SUCCESS";
         }
+
+        [HttpPost]
+        public string InsertBooking(int id)
+        {
+
+            StringBuilder sql = new StringBuilder();
+            List<DBParameter> param = new List<DBParameter>();
+
+
+            if (!string.IsNullOrWhiteSpace(id.ToSafeString()))
+            {
+                var query = new StringBuilder();
+                query.Append("INSERT INTO Booking (");
+                query.Append("Customer_ID,");
+                query.Append("RoomAndZone_ID )");
+
+                var queryParam = new StringBuilder();
+                queryParam.Append(" VALUES (");
+                queryParam.Append("@Customer_ID,");
+                queryParam.Append("@RoomAndZone_ID )");
+
+                sql.AppendLine(query.ToString());
+                sql.AppendLine(queryParam.ToString());
+
+                param.Add("@Customer_ID", 100002);
+                param.Add("@RoomAndZone_ID", id);
+
+                DatabaseUtilities.ExecuteNonQuery(sql, param);
+
+            }
+
+            return "SUCCESS";
+        }
+
     }
 }

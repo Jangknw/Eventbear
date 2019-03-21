@@ -1,142 +1,123 @@
-﻿@model BookingPlaceDetailView
+﻿@model BookingModel
 
 @{
     ViewBag.Title = "AlertBooking";
 }
 
 @*<script type="text/javascript">
-    $(document).ready(function () {
+        $(document).ready(function () {
 
 
-        $("#hii").click(function () {
-            var hi1 = $("#hi1").val();
-            $("#hi1").hide();
+            $("#hii").click(function () {
+                var hi1 = $("#hi1").val();
+                $("#hi1").hide();
 
 
-            function getFullName(hide) {
-                var fname = $("#hi1").val();
-                alert(hi1);
-            }
+                function getFullName(hide) {
+                    var fname = $("#hi1").val();
+                    alert(hi1);
+                }
+
+            });
 
         });
+    </script>*@
 
-    });
-</script>*@
-
-
-<div class="container-fluid">
-    <div class="row matop">
-        <div class="col-md-12">
-            <h2 class="search NameEvent">ห้อง/โซนที่ถูกจอง</h2>
-        </div>
-    </div>
-</div>
-
-@Html.Action("_PartialIndexAlertBooking", "AlertBooking", new { Place_ID = 100003 }) 
-
-
-<nav aria-label="Page navigation example">
-    <ul class="pagination aa">
-        <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-            </a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-            </a>
-        </li>
-    </ul>
-</nav>
-
-
-          <!-- Modal ลบ-->
-<div class="modal fade" id="ModalAlertBookDelete" tabindex="-1" role="dialog" aria-labelledby="ModalAlertBookDelete" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title fof" id="ModalAlertBookDelete">เตือน!!!</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p class="fof">ข้อมูลการจองจะถูกยกเลิก!!!</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">ตกลง</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+@using (Html.BeginForm("UpdateBooking", "AlertBooking", FormMethod.Post))
+{
+    <div class="container-fluid">
+        <div class="row matop">
+            <div class="col-md-12">
+                <h2 class="search NameEvent">ห้อง/โซนที่ถูกจอง</h2>
             </div>
         </div>
     </div>
-</div>
+
+    @Html.Action("_PartialIndexAlertBooking", "AlertBooking", new { Place_ID = 100003 })
 
 
+    <nav aria-label="Page navigation example">
+        <ul class="pagination aa">
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 
 
+    <!-- Modal ตกลงจอง-->
+    <div class="modal fade" id="ModalAlertBookConfirm1" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fof" id="ModalAlertBookConfirm1">เตือน!!!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="form-group col-md-12">
+                    <div class="form-row">
+                        <div class="form-group fof col-md-6">
+                            @Html.HiddenFor(Model => Model.Booking_ID, new { @class = "bookingID" })
+                            @*@Html.HiddenFor(Model => Model.Customer_ID, new { @class = "customerID" })
+                                @Html.HiddenFor(Model => Model.RoomAndZone_ID, new { @class = "roomAndZoneID" })*@
+                            @Html.Label("สถานะ:")
+                            @Html.TextBoxFor(Model => Model.Booking_Statua, new { @class = "form-control", placeholder = "เช่น รอว่างมัดจำ" })
+                            @*@Html.Label("สถานะ:")
+                                @Html.TextBoxFor(Model => Model.Booking_Statua, new { @class = "form-control", placeholder = "เช่น รอว่างมัดจำ" })*@
+
+                            @Html.Label("วันเวลาที่จอง:")
+                            @Html.TextBoxFor(Model => Model.Booking_Date, new { @class = "form-control", placeholder = "เช่น 2019-01-31" })
+
+                            @Html.Label("ถึงวันเวลา:")
+                            @Html.TextBoxFor(Model => Model.Booking_EndDate, new { @class = "form-control", placeholder = "เช่น 2019-01-31" })
 
 
-
-<!-- Modal ตกลงจอง-->
-<div class="modal fade" id="ModalAlertBookConfirm1" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title fof" id="ModalAlertBookConfirm1">เตือน!!!</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="form-group col-md-12">
-                <div class="form-row">
-                    <div class="form-group fof col-md-6">
-                        <label for="inputNameRoom">วันที่จอง:</label>
-                        <input class="form-control" value="เช่น 01/01/2561" type="text" onClick="this.select();" />
-
-                        <label for="inputDeposit1">ถึงวันที่:</label>
-                        <input class="form-control" value="เช่น 01/01/2561" type="text" onClick="this.select();" />
-
-                        @*<label for="input1">สถานะรอวางมัดจำ:</label>
-                        <input class="form-control" type="text" value="เช่น ภายใน 2 ชม." onclick="this.select();" />
-
-                        <label for="input1">จำกัดช่วงเวลา:</label>
-                        <input class="form-control" value="เช่น 12:00-14:00 น." type="text" onclick="this.select();" />*@
+                            @*<label for="input1">จำกัดช่วงเวลา:</label>
+                                <input class="form-control" value="เช่น 12:00-14:00 น." type="text" onclick="this.select();" />*@
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">ตกลง</button>
+                        <button type="button" class="btn btn-primary">ยกเลิก</button>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">ตกลง</button>
-                <button type="submit" class="btn btn-primary">ยกเลิก</button>
+
             </div>
         </div>
     </div>
-</div>
 
 
-
-
-
-          <!-- Modal ตกลงหลักจากโอนมัดจำแล้ว-->
-<div class="modal fade" id="ModalAlertBookConfirm2" tabindex="-1" role="dialog" aria-labelledby="ModalAlertBookConfirm2" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title fof" id="ModalAlertBookConfirm2">เตือน!!!</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+    @*Modal ตกลงหลักจากโอนมัดจำแล้ว
+        <div class="modal fade" id="ModalAlertBookConfirm2" tabindex="-1" role="dialog" aria-labelledby="ModalAlertBookConfirm2" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title fof" id="ModalAlertBookConfirm2">เตือน!!!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="fof">การจองสำเร็จ</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ตกลง</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                    </div>
+                </div>
             </div>
-            <div class="modal-body">
-                <p class="fof">การจองสำเร็จ</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">ตกลง</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-            </div>
-        </div>
-    </div>
-</div>
+        </div>*@
+}

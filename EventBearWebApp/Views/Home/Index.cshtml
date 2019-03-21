@@ -6,6 +6,10 @@
 
 @Html.Partial("_Login")
 
+@Html.Partial("_Register")
+
+@Html.Partial("_Profile")
+
 <div class="container ">
     <div class="row">
         <div class="col-md-12">
@@ -56,13 +60,17 @@
                 @Html.DropDownListFor(Model => Model.Place_District, new SelectList(ViewBag.District, "ID", "Name"), "ระบุเขต/อำเภอ", new { @class = "ss1" })
             </div>  
         </div>
-        <div class="col-md-3 ma bg-pink">      
+        <div class="col-md-3 ma bg-pink">   
+            @*<div class="divbutton">
+                <button type="submit" class="btn btn-primary Tot offset-4">ค้นหา</button>
+            </div>*@   
             <div class="divbutton">               
                 <a href="@Url.Action("IndexSearchLo", "Search")" class="btn btn-primary Tot offset-4 ">ค้นหา</a>
             </div>
         </div>
     </div>
 </div>
+
 
 
 <div class="han1" style="width: 100%; height: 20px; border-bottom: 1px solid black; text-align: center">

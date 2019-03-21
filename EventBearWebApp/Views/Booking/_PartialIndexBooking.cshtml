@@ -42,8 +42,8 @@
                 </div>
                 <div class="card-body fof">
                     <p>Customer_ID: @item.Customer_ID</p>
-                    <p>สถานะ: @item.Booking_Statua</p>
-                    <p class="card-title">รหัสการจอง: @item.Booking_ID </p>
+                    <p>RoomAndZone_ID: @item.RoomAndZone_ID</p>                  
+                    <p class="card-title">Booking_ID: @item.Booking_ID </p>
                     <p class="card-title">ชื่อสถานประกอบการ: @item.Place_Name </p>
                     <p class="card-title">ชื่อห้อง/โซน: @item.RoomAndZone_Name </p>
                     <p class="card-text">ราคา: @item.RoomAndZone_Price บาท  ค่ามัดจำ: @item.RoomAndZone_Deposit บาท </p>
@@ -53,10 +53,13 @@
                     <p class="card-text">ตำแหน่งที่ตั้ง: @item.Place_Address ซอย @item.Place_Alley ถนน @item.Place_Road</p>
                     <p class="card-text">แขวง @item.Place_SubDistrict เขต @item.Place_District จังหวัด @item.Place_Province</p>
                     <p class="card-text">รหัสไปรษณีย์ @item.Place_Zipcode </p>
-                    <p class="card-text">หมายเหตุ: @item.RoomAndZone_Note</p>    
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#ModalBooking">
+                    <p class="card-text">หมายเหตุ: @item.RoomAndZone_Note</p>
+                    <p class="card-text">สถานะ: @item.Booking_Statua</p>
+                    <p class="card-text">วันที่ใช้: @item.Booking_Date</p>
+                    <p class="card-text">ถึงวันที่: @item.Booking_EndDate</p>    
+                    @*<button type="button" class="btn btn-info" data-toggle="modal" data-target="#ModalBooking">
                         ยกเลิก
-                    </button>
+                    </button>*@
                 </div>             
             </div>
         </div>

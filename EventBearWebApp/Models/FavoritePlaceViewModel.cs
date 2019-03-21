@@ -15,8 +15,8 @@ namespace EventBearWebApp.Models
         public Int64? RoomAndZone_ID { get; set; }
         public Int64? Favorite_ID { get; set; }  
         public string RoomAndZone_Name { get; set; }
-        public int RoomAndZone_Price { get; set; }
-        public int RoomAndZone_Deposit { get; set; }
+        public string RoomAndZone_Price { get; set; }
+        public string RoomAndZone_Deposit { get; set; }
         public string RoomAndZone_NumberPeople { get; set; }
         public string RoomAndZone_Note { get; set; }
         public Int64? Place_ID { get; set; }

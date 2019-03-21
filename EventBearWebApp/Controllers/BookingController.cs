@@ -29,7 +29,7 @@ namespace EventBearWebApp.Controllers
         }
        
         [HttpPost]
-        public ActionResult AddBooking(BookingModel model)
+        public ActionResult InsertBooking(BookingModel model)
         {
             
             StringBuilder sql = new StringBuilder();
@@ -49,7 +49,6 @@ namespace EventBearWebApp.Controllers
                     query.Append("Booking_Date,");
                     query.Append("Booking_EndDate )");
              
-
                     sql.AppendLine(query.ToString());
 
                     param.Add("@Customer_ID", 100002);
@@ -76,7 +75,6 @@ namespace EventBearWebApp.Controllers
                     query.Append("Booking_Date,");
                     query.Append("Booking_EndDate )");
 
-
                     var queryParam = new StringBuilder();
                     queryParam.Append(" VALUES (");
                     queryParam.Append("@Customer_ID,");
@@ -84,7 +82,6 @@ namespace EventBearWebApp.Controllers
                     queryParam.Append("@Booking_Statua,");
                     queryParam.Append("@Booking_Date,");
                     queryParam.Append("@Booking_EndDate )");
-
 
                     sql.AppendLine(query.ToString());
                     sql.AppendLine(queryParam.ToString());

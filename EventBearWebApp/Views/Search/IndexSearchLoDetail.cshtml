@@ -1,10 +1,12 @@
-﻿@model  PlaceModel
+﻿@model  SearchLoDetailDViewModel
 
 @{
     ViewBag.Title = "IndexSearchLoDetail";
 }
 
-@Html.HiddenFor(Model => Model.Place_ID, new { @class = "form-control" })
+@*@using (Html.BeginForm("IndexSearchLoDetail", "Search", FormMethod.Post))
+{*@
+
 
 @*<div class="container-fluid">
     <div class="row matop">
@@ -49,10 +51,6 @@ new { @class = "form-control" })
 
     @Html.Action("_PartialIndexSearchLoDetail", "Search")
   
-
-
-
-
     <nav aria-label="Page navigation example">
         <ul class="pagination aa">
             <li class="page-item">
@@ -69,56 +67,14 @@ new { @class = "form-control" })
             </li>
         </ul>
     </nav>
+
 </div>
 
 
+@*}*@
 
-<!-- Modal -->
-<div class="modal fade" id="ModalSearchLoDetailFavorite" tabindex="-1" role="dialog" aria-labelledby="ModalSearchLoDetailFavorite" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="ModalSearchLoDetailFavorite">เตือน!!!</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>ข้อมูลถูกบันทึกแล้ว</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">ตกลง</button>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="ModalSearchLoDetailBooking" tabindex="-1" role="dialog" aria-labelledby="ModalSearchLoDetailBooking" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="ModalSearchLoDetailBooking">เตือน!!!</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>การจองของคุณจะถูกส่งไปยังผู้ให้เช่า กรุณารอการติดต่อกลับ</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">ตกลง</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-@section scripts {
+@*@section scripts {
     @Scripts.Render("~/bundles/scripts/Search")
-}
+}*@
 
 

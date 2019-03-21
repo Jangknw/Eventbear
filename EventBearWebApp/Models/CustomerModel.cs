@@ -5,15 +5,17 @@ using System.Web;
 
 namespace EventBearWebApp.Models
 {
-    public class CustomerModeel
+    public class CustomerModel
     {
-        public Int64 CustomerType_ID { get; set; }
-        public Int64 Customer_ID { get; set; }
+        
+        public string CustomerType_ID { get; set; }
+        public Int64? Customer_ID { get; set; }
         public string Customer_Name { get; set; }       
         public string Customer_Lastname { get; set; }
         public string Customer_Tel { get; set; }
         public string Customer_Email { get; set; }
         public string Customer_Password { get; set; }
+        public string Customer_ConfirmPassword { get; set; }
         public string Customer_Address { get; set; }
         public string Customer_Alley { get; set; }
         public string Customer_Road { get; set; }

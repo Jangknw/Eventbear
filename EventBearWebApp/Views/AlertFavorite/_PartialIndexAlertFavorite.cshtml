@@ -48,13 +48,32 @@
                     <p class="card-text">ราคา: @item.RoomAndZone_Price บาท  ค่ามัดจำ: @item.RoomAndZone_Deposit บาท </p>
                     <p class="card-text">จำนวนคน: @item.RoomAndZone_NumberPeople คน</p>                                 
                     <p class="card-text">หมายเหตุ: @item.RoomAndZone_Note</p> 
-                                                     
-                    @*<button  class="btn btn-info" data-toggle="modal"  data-target="#ModalAlertFavorite">
+                   
+                     <button class="btn btn-info" onclick="DeleteAlertFavorite('@item.Favorite_ID')"> ลบ </button>                                                                                 
+                    @*<button type="button" class="btn btn-info" data-toggle="modal" data-target="#ModalAlertFavorite">
                         ลบ
                     </button>*@
-                   
-                    <button class="btn btn-info" onclick="DeleteAlertFavorite('@item.Favorite_ID')"> ลบ </button>
+                </div>
+            </div>
+        </div>
 
+        <!-- Modal ลบ-->
+        <div class="modal fade" id="ModalAlertFavorite" tabindex="-1" role="dialog" aria-labelledby="ModalAlertFavorite" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalAlertFavorite">เตือน!!!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="fof">ข้อมูลจะถูกลบออกจากหน้านี้!!!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-info" onclick="DeleteAlertFavorite('@item.Favorite_ID')"> ตกลง </button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -79,6 +98,7 @@
     }
 
 </script>
+
 
 
 

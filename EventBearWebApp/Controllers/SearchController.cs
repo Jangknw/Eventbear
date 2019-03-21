@@ -71,15 +71,10 @@ namespace EventBearWebApp.Controllers
 
         public ActionResult IndexSearchLoDetail()
         {
-            Init();
-            //List<PlaceTypeModel> placetypename = DatabaseLibrary
-            //  .DatabaseUtilities.ExecuteQuery<PlaceTypeModel>
-            //   ("Select PlaceType_Name,PlaceType_ID from placetype").ToList();
-            //ViewBag.placetypename = placetypename;
-            //return View();
-            var temp = DatabaseUtilities.ExecuteQuery<PlaceModel>
-            ("Select * from Place").Last();
-            return View(temp);
+            //Init();      
+            //var temp = DatabaseUtilities.ExecuteQuery<PlaceModel>
+            //("Select * from Place").Last();
+            return View();
         }
 
         public ActionResult _PartialIndexSearchLoDetail(int Place_ID)
@@ -90,5 +85,76 @@ namespace EventBearWebApp.Controllers
             IEnumerable<SearchLoDetailDViewModel> roomAndZone = DatabaseUtilities.ExecuteQuery<SearchLoDetailDViewModel>(sql).ToList();
             return PartialView("_PartialIndexSearchLoDetail", roomAndZone);           
         }
+
+
+        [HttpPost]
+        public string InsertBooking(int id)
+        {
+
+            StringBuilder sql = new StringBuilder();
+            List<DBParameter> param = new List<DBParameter>();
+
+
+            if (!string.IsNullOrWhiteSpace(id.ToSafeString()))
+            {
+                var query = new StringBuilder();
+                query.Append("INSERT INTO Booking (");
+                query.Append("Customer_ID,");
+                query.Append("RoomAndZone_ID )");
+         
+                var queryParam = new StringBuilder();
+                queryParam.Append(" VALUES (");
+                queryParam.Append("@Customer_ID,");
+                queryParam.Append("@RoomAndZone_ID )");
+
+                sql.AppendLine(query.ToString());
+                sql.AppendLine(queryParam.ToString());
+
+                param.Add("@Customer_ID", 100002);
+                param.Add("@RoomAndZone_ID", id);
+
+                DatabaseUtilities.ExecuteNonQuery(sql, param);
+
+            }
+
+            return "SUCCESS";           
+        }
+
+
+
+
+        [HttpPost]
+        public string InsertFavorite(int id)
+        {
+
+            StringBuilder sql = new StringBuilder();
+            List<DBParameter> param = new List<DBParameter>();
+
+
+            if (!string.IsNullOrWhiteSpace(id.ToSafeString()))
+            {
+                var query = new StringBuilder();
+                query.Append("INSERT INTO Favorite (");
+                query.Append("Customer_ID,");
+                query.Append("RoomAndZone_ID )");
+
+                var queryParam = new StringBuilder();
+                queryParam.Append(" VALUES (");
+                queryParam.Append("@Customer_ID,");
+                queryParam.Append("@RoomAndZone_ID )");
+
+                sql.AppendLine(query.ToString());
+                sql.AppendLine(queryParam.ToString());
+
+                param.Add("@Customer_ID", 100002);
+                param.Add("@RoomAndZone_ID", id);
+
+                DatabaseUtilities.ExecuteNonQuery(sql, param);
+
+            }
+
+            return "SUCCESS";
+        }
+
     }
 }

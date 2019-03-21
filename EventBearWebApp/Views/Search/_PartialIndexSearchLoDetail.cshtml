@@ -1,9 +1,9 @@
-﻿@model IEnumerable<SearchLoDetailDViewModel> 
+﻿@model IEnumerable<SearchLoDetailDViewModel>
 
 
 <div class="row">
     @foreach (var item in Model)
-    {        
+    {
         <div class="matop col-6">
             <div class="card">
                 <div id="SearchLoDetail1" class="carousel slide" data-ride="carousel">
@@ -44,66 +44,117 @@
                 <div class="card-body">
                     <h5 class="card-title">ชื่อสถานประกอบการ: @item.Place_Name </h5>
                     <h5 class="card-title">ชื่อห้อง/โซน: @item.RoomAndZone_Name </h5>
-                    <p class="card-text">ราคา: @item.RoomAndZone_Price บาท  ค่ามัดจำ: @item.RoomAndZone_Deposit บาท </p>                   
+                    <p class="card-text">ราคา: @item.RoomAndZone_Price บาท  ค่ามัดจำ: @item.RoomAndZone_Deposit บาท </p>
                     <p class="card-text">จำนวนคน: @item.RoomAndZone_NumberPeople คน</p>
                     <p class="card-text">เบอร์โทรติดต่อ: @item.Place_Tel </p>
-                    <p class="card-text">อีเมล: @item.Place_Email </p>                                  
-                    <p class="card-text">ตำแหน่งที่ตั้ง: @item.Place_Address ซอย @item.Place_Alley ถนน @item.Place_Road</p>                   
+                    <p class="card-text">อีเมล: @item.Place_Email </p>
+                    <p class="card-text">ตำแหน่งที่ตั้ง: @item.Place_Address ซอย @item.Place_Alley ถนน @item.Place_Road</p>
                     <p class="card-text">แขวง @item.Place_SubDistrict เขต @item.Place_District จังหวัด @item.Place_Province</p>
                     <p class="card-text">รหัสไปรษณีย์ @item.Place_Zipcode </p>
                     <p class="card-text">หมายเหตุ: @item.RoomAndZone_Note</p>
-                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalSearchLoDetailFavorite">
+                    <p class="card-text">RoomAndZone_ID: @item.RoomAndZone_ID</p>
+                    <p class="card-text">Customer_ID: @item.Customer_ID</p>
+                    
+                    <button class="btn btn-dark" onclick="InsertFavorite('@item.RoomAndZone_ID')"> สนใจ </button>
+                    @*<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalSearchLoDetailFavorite">
                         สนใจ
-                    </button>
-                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalSearchLoDetailBooking">
+                    </button>*@
+                    <button class="btn btn-dark" onclick="InsertBooking('@item.RoomAndZone_ID')"> จอง </button>
+                    @*<button type="submit" class="btn btn-dark" data-toggle="modal" data-target="#ModalSearchLoDetailBooking">
                         จอง
-                    </button>
+                    </button>*@
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal จอง-->
+        <div class="modal fade" id="ModalSearchLoDetailBooking" tabindex="-1" role="dialog" aria-labelledby="ModalSearchLoDetailBooking" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalSearchLoDetailBooking">เตือน!!!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>การจองของคุณจะถูกส่งไปยังผู้ให้เช่า กรุณารอการติดต่อกลับ</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" onclick="InsertBooking('@item.RoomAndZone_ID')"> ตกลง </button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal สนใจ-->
+        <div class="modal fade" id="ModalSearchLoDetailFavorite" tabindex="-1" role="dialog" aria-labelledby="ModalSearchLoDetailFavorite" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalSearchLoDetailFavorite">เตือน!!!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>ข้อมูลของคุณจะถูกบันทึก</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" onclick="InsertFavorite('@item.RoomAndZone_ID')"> ตกลง </button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                    </div>
                 </div>
             </div>
         </div>
     }
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="ModalSearchLoDetailFavorite" tabindex="-1" role="dialog" aria-labelledby="ModalSearchLoDetailFavorite" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="ModalSearchLoDetailFavorite">เตือน!!!</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>ข้อมูลถูกบันทึกแล้ว</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">ตกลง</button>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="ModalSearchLoDetailBooking" tabindex="-1" role="dialog" aria-labelledby="ModalSearchLoDetailBooking" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="ModalSearchLoDetailBooking">เตือน!!!</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>การจองของคุณจะถูกส่งไปยังผู้ให้เช่า กรุณารอการติดต่อกลับ</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">ตกลง</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 
+
+
+<script>
+    function InsertBooking(ID) {
+
+        $.ajax({
+            url: '@Url.Action("InsertBooking")',
+            type: 'POST',
+            data: { id: ID },
+            success: function (data) {
+
+                //alert(data)
+
+                //$('.item-box-' + ID).hide();
+            },
+            error: function (e) {
+                alert(e);
+            }
+        });
+    }
+
+</script>
+
+
+<script>
+    function InsertFavorite(ID) {
+
+        $.ajax({
+            url: '@Url.Action("InsertFavorite")',
+            type: 'POST',
+            data: { id: ID },
+            success: function (data) {
+
+                //alert(data)
+
+                //$('.item-box-' + ID).hide();
+            },
+            error: function (e) {
+                alert(e);
+            }
+        });
+    }
+
+</script>
