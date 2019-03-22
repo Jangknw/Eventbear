@@ -29,6 +29,22 @@ namespace EventBearWebApp.Controllers
             //return View();
         }
 
+        //public ActionResult ModalConfirm()
+        //{
+        //    var temp = DatabaseUtilities.ExecuteQuery<BookingModel>
+        //     ("Select * from Booking Where Booking_ID = 100059").LastOrDefault();
+        //    return View(temp);
+        //    return View();
+        //}
+
+        public ActionResult ModalConfirm(BookingModel model)
+        {            
+            StringBuilder sql = new StringBuilder();
+            sql.AppendFormat("select * from Booking WHERE Booking_ID = '{0}'; ", model.Booking_ID);     
+            IEnumerable<BookingModel> SearchLo = DatabaseUtilities.ExecuteQuery<BookingModel>(sql).ToList();
+            return View();
+        }
+
         [HttpPost]
         public ActionResult UpdateBooking(BookingModel model)
         {

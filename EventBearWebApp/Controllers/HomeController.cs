@@ -65,6 +65,8 @@ namespace EventBearWebApp.Controllers
         //    return PartialView("_PartialIndexSearchLo", SearchLo);
         //}
 
+
+
         public ActionResult About()
         {
             //ViewBag.Message = "Your application description page.";

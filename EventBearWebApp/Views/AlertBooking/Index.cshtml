@@ -4,6 +4,8 @@
     ViewBag.Title = "AlertBooking";
 }
 
+@Html.Partial("ModalConfirm")
+
 @*<script type="text/javascript">
         $(document).ready(function () {
 
@@ -23,8 +25,8 @@
         });
     </script>*@
 
-@using (Html.BeginForm("UpdateBooking", "AlertBooking", FormMethod.Post))
-{
+@*@using (Html.BeginForm("UpdateBooking", "AlertBooking", FormMethod.Post))
+{*@
     <div class="container-fluid">
         <div class="row matop">
             <div class="col-md-12">
@@ -56,10 +58,8 @@
 
 
     <!-- Modal ตกลงจอง-->
-    <div class="modal fade" id="ModalAlertBookConfirm1" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
+    @*<div class="modal fade" id="ModalAlertBookConfirm1" role="dialog">
+        <div class="modal-dialog">         
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title fof" id="ModalAlertBookConfirm1">เตือน!!!</h5>
@@ -71,12 +71,12 @@
                     <div class="form-row">
                         <div class="form-group fof col-md-6">
                             @Html.HiddenFor(Model => Model.Booking_ID, new { @class = "bookingID" })
-                            @*@Html.HiddenFor(Model => Model.Customer_ID, new { @class = "customerID" })
-                                @Html.HiddenFor(Model => Model.RoomAndZone_ID, new { @class = "roomAndZoneID" })*@
+                            @Html.HiddenFor(Model => Model.Customer_ID, new { @class = "customerID" })
+                                @Html.HiddenFor(Model => Model.RoomAndZone_ID, new { @class = "roomAndZoneID" })
                             @Html.Label("สถานะ:")
                             @Html.TextBoxFor(Model => Model.Booking_Statua, new { @class = "form-control", placeholder = "เช่น รอว่างมัดจำ" })
-                            @*@Html.Label("สถานะ:")
-                                @Html.TextBoxFor(Model => Model.Booking_Statua, new { @class = "form-control", placeholder = "เช่น รอว่างมัดจำ" })*@
+                            @Html.Label("สถานะ:")
+                                @Html.TextBoxFor(Model => Model.Booking_Statua, new { @class = "form-control", placeholder = "เช่น รอว่างมัดจำ" })
 
                             @Html.Label("วันเวลาที่จอง:")
                             @Html.TextBoxFor(Model => Model.Booking_Date, new { @class = "form-control", placeholder = "เช่น 2019-01-31" })
@@ -85,8 +85,8 @@
                             @Html.TextBoxFor(Model => Model.Booking_EndDate, new { @class = "form-control", placeholder = "เช่น 2019-01-31" })
 
 
-                            @*<label for="input1">จำกัดช่วงเวลา:</label>
-                                <input class="form-control" value="เช่น 12:00-14:00 น." type="text" onclick="this.select();" />*@
+                            <label for="input1">จำกัดช่วงเวลา:</label>
+                                <input class="form-control" value="เช่น 12:00-14:00 น." type="text" onclick="this.select();" />
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -97,7 +97,7 @@
 
             </div>
         </div>
-    </div>
+    </div>*@
 
 
     @*Modal ตกลงหลักจากโอนมัดจำแล้ว
@@ -120,4 +120,4 @@
                 </div>
             </div>
         </div>*@
-}
+@*}*@

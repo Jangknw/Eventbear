@@ -1,0 +1,26 @@
+﻿@model IEnumerable<FavoritePlaceViewModel>
+
+ @foreach (var item in Model)
+ {
+<!-- Modal ลบ-->
+<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalFavoriteDelete" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fof" id="Modal">เตือน!!!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="fof">ข้อมูลการจองจะถูกยกเลิก!!!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-info" onclick="DeleteFavorite('@item.Favorite_ID')"> ตกลง </button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+            </div>
+        </div>
+    </div>
+</div>      
+ }
+

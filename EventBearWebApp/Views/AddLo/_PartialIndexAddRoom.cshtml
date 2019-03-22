@@ -52,7 +52,7 @@
                     <p class="card-text">แขวง @item.Place_SubDistrict เขต @item.Place_District จังหวัด @item.Place_Province</p>
                     <p class="card-text">รหัสไปรษณีย์ @item.Place_Zipcode </p>*@
                                                                                
-                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalEditRoom">
+                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalEditRoom"  onclick="UpdateRoom('@item.RoomAndZone_ID')">
                         แก้ไข
                     </button>
                     <button class="btn btn-info" onclick="DeleteAddRoom('@item.RoomAndZone_ID')"> ลบ </button>
@@ -104,5 +104,12 @@
                 }
             });
     }
+
+    function UpdateRoom(ID) {
+        $('.RoomAndZone_ID').val(ID);
+        //$('.customerID').val(ID);
+        //$('.roomAndZoneID').val(ID);
+    }
+
 
 </script>

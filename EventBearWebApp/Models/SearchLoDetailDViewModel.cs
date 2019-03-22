@@ -15,7 +15,9 @@ namespace EventBearWebApp.Models
         public Int64? RoomAndZone_ID { get; set; }
         public Int64? Place_ID{ get; set; }
         public Int64? Booking_ID { get; set; }
-        public Int64? Customer_ID { get; set; }     
+        public Int64? Customer_ID { get; set; }
+        public Int64? PlaceType_ID { get; set; }
+        
         public string Place_Name { get; set; }
         public string Place_Address { get; set; }
         public string Place_Alley { get; set; }

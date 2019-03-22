@@ -1,5 +1,5 @@
 ﻿@model RoomAndZoneModel
-@using (Html.BeginForm("AddRoomAndZone", "AddLo", FormMethod.Post))
+@using (Html.BeginForm("UpdateRoom", "AddLo", FormMethod.Post))
 {
     <!-- Modal -->
     <div class="modal fade" id="ModalEditRoom" role="dialog">
@@ -16,6 +16,7 @@
                 <div class="form-group col-md-12">
                     <div class="row  matop">
                         <div class="offset-md-2 col-md-4 matop">
+                            @Html.HiddenFor(Model => Model.RoomAndZone_ID, new { @class = "RoomAndZone_ID" })
                             <div class="form-group">
                                 @Html.Label(("ชื่อห้อง/โซน:"), new { @class = "rop" })
                                 @Html.TextBoxFor(Model => Model.RoomAndZone_Name, new { @class = "form-control", placeholder = "เช่น ห้องบอลลูน" })
@@ -48,8 +49,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">ตกลง</button>
-                        <button type="button" class="btn btn-primary">ยกเลิก</button>
+                        <button type="submit" class="btn btn-secondary">ตกลง</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>  
                     </div>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<SearchLoDetailDViewModel>
 
-
-<div class="row">
+@*<div class="row offset-md-3">*@
+    <div class="row">
     @foreach (var item in Model)
     {
         <div class="matop col-6">
@@ -54,15 +54,15 @@
                     <p class="card-text">หมายเหตุ: @item.RoomAndZone_Note</p>
                     <p class="card-text">RoomAndZone_ID: @item.RoomAndZone_ID</p>
                     <p class="card-text">Customer_ID: @item.Customer_ID</p>
-                    
+
                     <button class="btn btn-dark" onclick="InsertFavorite('@item.RoomAndZone_ID')"> สนใจ </button>
                     @*<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalSearchLoDetailFavorite">
-                        สนใจ
-                    </button>*@
+                            สนใจ
+                        </button>*@
                     <button class="btn btn-dark" onclick="InsertBooking('@item.RoomAndZone_ID')"> จอง </button>
                     @*<button type="submit" class="btn btn-dark" data-toggle="modal" data-target="#ModalSearchLoDetailBooking">
-                        จอง
-                    </button>*@
+                            จอง
+                        </button>*@
                 </div>
             </div>
         </div>

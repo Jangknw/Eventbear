@@ -3,7 +3,7 @@
 <div class="row">
     @foreach (var item in Model)
     {
-        <div class="matop col-4">
+        <div class="matop col-4 item-box-@item.Favorite_ID">
             <div class="card">
                 <div id="SearchLoDetail1" class="carousel slide" data-ride="carousel">
                     <a class="btn" href="#myModalSearchLoDetail1" data-toggle="modal">
@@ -55,10 +55,10 @@
                     @*<button type="button" class="btn btn-info" data-toggle="modal" data-target="#ModalFavoriteBooking">
                         จอง
                     </button>*@
-                    <button class="btn btn-info" onclick="DeleteAlertFavorite('@item.Favorite_ID')"> ลบ </button>
-                    @*<button type="button" class="btn btn-info" data-toggle="modal" data-target="#ModalFavoriteDelete">
+                    @*<button class="btn btn-info" onclick="DeleteFavorite('@item.Favorite_ID')"> ลบ </button>*@
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#ModalFavoriteDelete">
                         ลบ
-                    </button>*@
+                    </button>
                 </div>
             </div>
         </div>
@@ -86,7 +86,7 @@
         </div>
 
           <!-- Modal ลบ-->
-        <div class="modal fade" id="ModalFavoriteDelete" tabindex="-1" role="dialog" aria-labelledby="ModalFavoriteDelete" aria-hidden="true">
+        @*<div class="modal fade" id="ModalFavoriteDelete" tabindex="-1" role="dialog" aria-labelledby="ModalFavoriteDelete" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -99,12 +99,12 @@
                         <p class="fof">ข้อมูลการจองจะถูกยกเลิก!!!</p>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-info" onclick="DeleteAlertFavorite('@item.Favorite_ID')"> ตกลง </button>
+                        <button class="btn btn-info" onclick="DeleteFavorite('@item.Favorite_ID')"> ตกลง </button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
                     </div>
                 </div>
             </div>
-        </div>      
+        </div>*@      
 
     }
 </div>
@@ -112,13 +112,13 @@
 
 
 <script>
-    function DeleteAlertFavorite(ID)
+    function DeleteFavorite(ID)
     {
         $.ajax({
-            url: '@Url.Action("DeleteAlertFavorite")',
+            url: '@Url.Action("DeleteFavorite")',
             type: 'POST',
             data: { id: ID },
-            contentType: 'application/json; charset=utf-8',
+            //contentType: 'application/json; charset=utf-8',
             success: function (data) {
                 $('.item-box-'+ ID).hide();
             },

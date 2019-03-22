@@ -43,14 +43,40 @@ namespace EventBearWebApp.Controllers
         }
 
         // GET: Search
-        public ActionResult IndexSearchLo()
-        {
+
+        public ActionResult IndexSearchLo(PlaceAndPlaceTypeModel model)
+        {           
             Init();
-            var temp = DatabaseUtilities.ExecuteQuery<PlaceAndPlaceTypeModel>
-            ("Select * from View_SearchLo").Last();
-            return View(temp);
-            //return View();
+            StringBuilder sql = new StringBuilder();
+            sql.AppendFormat("select * from View_SearchLo ");
+            if (!string.IsNullOrEmpty(model.PlaceType_ID))
+                sql.AppendFormat("WHERE PlaceType_ID = '{0}' ", model.PlaceType_ID);
+            if (!string.IsNullOrEmpty(model.Place_Province))
+                sql.AppendFormat(" AND Place_Province = '{0}'", model.Place_Province);
+            if (!string.IsNullOrEmpty(model.Place_District))
+                sql.AppendFormat(" AND Place_District = '{0}';", model.Place_District);
+            IEnumerable<PlaceAndPlaceTypeModel> SearchLo = DatabaseUtilities.ExecuteQuery<PlaceAndPlaceTypeModel>(sql).ToList();
+            return View();
         }
+
+        //public ActionResult IndexSearchLo(int PlaceType_ID)
+        //{
+        //    int test = PlaceType_ID;
+        //    Init();           
+        //   StringBuilder sql = new StringBuilder();
+        //    sql.AppendFormat("select * from View_SearchLo WHERE PlaceType_ID = '{0}'; ", PlaceType_ID);
+        //    IEnumerable<PlaceAndPlaceTypeModel> SearchLo = DatabaseUtilities.ExecuteQuery<PlaceAndPlaceTypeModel>(sql).ToList();           
+        //    return View();
+        //}
+
+        //public ActionResult IndexSearchLo(string search)
+        //{        
+        //    string test = search;
+        //    Init();        
+        //    var temp = DatabaseUtilities.ExecuteQuery<PlaceAndPlaceTypeModel>
+        //    ("Select * from View_SearchLo Where PlaceType_ID = 6000").Last();
+        //    return View(temp);        
+        //}
 
         public ActionResult _PartialIndexSearchLo(PlaceAndPlaceTypeModel model)
         {

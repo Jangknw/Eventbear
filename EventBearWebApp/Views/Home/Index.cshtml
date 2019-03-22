@@ -41,13 +41,15 @@
     </div>
 </div>
 
+@using (Html.BeginForm("IndexSearchLo", "Search", FormMethod.Post))
+{
 <div class="container-fuild ">
     <div class="row ">
         <div class="col-md-3 ma bg-pink">
            
             <div class="form-group">
                 @Html.DropDownListFor(Model => Model.PlaceType_ID, new SelectList(ViewBag.placetypename, "PlaceType_ID", "PlaceType_Name"), "ระบุประเภทสถานที่",
-         new { @class = "ss1" })
+new { @class = "ss1" })
             </div>          
         </div>
         <div class="col-md-3 ma bg-pink">       
@@ -61,17 +63,16 @@
             </div>  
         </div>
         <div class="col-md-3 ma bg-pink">   
-            @*<div class="divbutton">
+            <div class="divbutton">
                 <button type="submit" class="btn btn-primary Tot offset-4">ค้นหา</button>
-            </div>*@   
-            <div class="divbutton">               
+            </div>   
+            @*<div class="divbutton">               
                 <a href="@Url.Action("IndexSearchLo", "Search")" class="btn btn-primary Tot offset-4 ">ค้นหา</a>
-            </div>
+            </div>*@
         </div>
     </div>
 </div>
-
-
+}
 
 <div class="han1" style="width: 100%; height: 20px; border-bottom: 1px solid black; text-align: center">
     <span class="god " style="font-size: 35px; background-color:white; padding: 0 10px;">
@@ -80,7 +81,7 @@
 </div>
 <div class="row han">
     <div class="col-md-3 gop1 ">
-        <a href="@Url.Action("IndexSearchLo", "Search")">
+        <a href="@Url.Action("IndexSearchLo", "Search", new { PlaceType_ID="6000" })">
             <div class="card  text-center text-white">               
                 <img src="~/IMG1/ร้านอาหาร3.jpg" class="card-img momo" alt="...">               
                 <div class="card-img-overlay fontcolor" >
@@ -90,7 +91,7 @@
         </a>
 </div>
     <div class="col-md-3 gop2  ">
-        <a href="@Url.Action("IndexSearchLo", "Search")">
+        <a href="@Url.Action("IndexSearchLo", "Search", new { PlaceType_ID = "4000" } )">
             <div class="card  text-center text-white">
                 <img src="~/IMG1/สวนสาธารณะ1.jpg" class="card-img momo" alt="...">
                 <div class="card-img-overlay fontcolor">
@@ -100,7 +101,7 @@
         </a>
 </div>
     <div class="col-md-3 gop3 ">
-        <a href="@Url.Action("IndexSearchLo", "Search")">
+        <a href="@Url.Action("IndexSearchLo", "Search", new { PlaceType_ID = "1000" })">
             <div class="card  text-center ">
                 <img src="~/IMG1/ลานกิจกรรม2.jpg" class="card-img momo" alt="...">
                 <div class="card-img-overlay fontcolor">
@@ -110,7 +111,7 @@
         </a>
 </div>
     <div class="col-md-3 gop4 ">
-        <a href="@Url.Action("IndexSearchLo", "Search")">
+        <a href="@Url.Action("IndexSearchLo", "Search", new { PlaceType_ID = "2000" })">
             <div class="card  text-center text-white">
                 <img src="~/IMG1/ห้องประชุม3.jpg" class="card-img momo" alt="...">
                 <div class="card-img-overlay fontcolor">
@@ -130,7 +131,7 @@
 
 <div class="row ">
     <div class="col-md-3 gop5 ">
-        <a href="@Url.Action("IndexSearchLo", "Search")">
+        <a href="@Url.Action("IndexSearchLo", "Search",new { PlaceType_ID = "5000" })">
             <div class="card  text-center text-white">
                 <img src="~/IMG1/ห้องจัดเลี้ยง2.jpg" class="card-img momo " alt="...">
                 <div class="card-img-overlay fontcolor">
@@ -140,7 +141,7 @@
         </a>
 </div>
     <div class="col-md-3 gop6 ">
-        <a href="@Url.Action("IndexSearchLo", "Search")">
+        <a href="@Url.Action("IndexSearchLo", "Search", new { PlaceType_ID = "7000" })">
             <div class="card  text-center text-white">
                 <img src="~/IMG1/ห้องสัมมนา1.jpg" class="card-img momo" alt="...">
                 <div class="card-img-overlay fontcolor">
@@ -150,7 +151,7 @@
        </a>
 </div>
     <div class="col-md-3 gop7 ">
-        <a href="@Url.Action("IndexSearchLo", "Search")">
+        <a href="@Url.Action("IndexSearchLo", "Search", new { PlaceType_ID = "8000" })">
             <div class="card text-center text-white">
                 <img src="~/IMG1/ห้องสตูดิโอ2.jpg" class="card-img momo" alt="...">
                 <div class="card-img-overlay fontcolor">
@@ -160,7 +161,7 @@
         </a>
 </div>
     <div class="col-md-3 gop8 ">
-        <a href="@Url.Action("IndexSearchLo", "Search")">
+        <a href="@Url.Action("IndexSearchLo", "Search", new { PlaceType_ID = "3000" })">
             <div class="card text-center text-white">
                 <img src="~/IMG1/ห้องซ้อมดนตรี2.jpg" class="card-img momo" alt="...">
                 <div class="card-img-overlay fontcolor">

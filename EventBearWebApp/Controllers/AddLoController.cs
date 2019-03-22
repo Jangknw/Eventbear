@@ -339,6 +339,46 @@ namespace EventBearWebApp.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult UpdateRoom(RoomAndZoneModel model)
+        {
+
+            StringBuilder sql = new StringBuilder();
+            List<DBParameter> param = new List<DBParameter>();
+
+            if (model.RoomAndZone_ID != null && model.RoomAndZone_ID > 0)
+            {
+                var query = new StringBuilder();
+                query.Append("UPDATE RoomAndZone SET ");
+                query.Append("RoomAndZone_Name = @RoomAndZone_Name,");
+                query.Append("RoomAndZone_Price = @RoomAndZone_Price,");
+                query.Append("RoomAndZone_Deposit = @RoomAndZone_Deposit,");
+                query.Append("RoomAndZone_NumberPeople = @RoomAndZone_NumberPeople,");      
+                query.Append("RoomAndZone_Note = @RoomAndZone_Note ");
+                query.Append("WHERE RoomAndZone_ID = @RoomAndZone_ID");
+
+                sql.AppendLine(query.ToString());
+
+                param.Add("@RoomAndZone_Name", model.RoomAndZone_Name);
+                param.Add("@RoomAndZone_Price", model.RoomAndZone_Price);
+                param.Add("@RoomAndZone_Deposit", model.RoomAndZone_Deposit);
+                param.Add("@RoomAndZone_NumberPeople", model.RoomAndZone_NumberPeople);
+                param.Add("@RoomAndZone_Note", model.RoomAndZone_Note);
+                param.Add("@RoomAndZone_ID", model.RoomAndZone_ID);
+
+                DatabaseUtilities.ExecuteNonQuery(sql, param);
+
+            }
+            //else
+            //{
+
+
+            //}
+
+
+            return View("ListAddRoom");
+        }
+
         public ActionResult Edit()
         {
             return View();

@@ -26,7 +26,7 @@ namespace EventBearWebApp.Controllers
         }
 
         [HttpPost]
-        public string DeleteAlertFavorite(int id)
+        public string DeleteFavorite(int id)
         {
 
             StringBuilder sql = new StringBuilder();

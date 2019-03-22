@@ -3,78 +3,65 @@
 @{
     ViewBag.Title = "IndexSearchLoDetail";
 }
-
-@*@using (Html.BeginForm("IndexSearchLoDetail", "Search", FormMethod.Post))
-{*@
-
-
-@*<div class="container-fluid">
-    <div class="row matop">
-        <div class="col-md-12">
-            <h2 class="search NameEvent">ร้านจุดจุดจุด<i class="fa fa-search"></i> </h2>
-        </div>
-    </div>
-</div>*@
-
-
-<div class="container-fluid">  
-    
-    <div class="divbutton">
-        <a href="@Url.Action("IndexSearchLo", "Search")" class="btn btn-dark btt" type="submit">กลับ</a>
-    </div>       
-
-        @*<div class="positionFixedLeft">
+    @*<div class="container-fluid">
+            <div class="row matop">
+                <div class="col-md-12">
+                    <h2 class="search NameEvent">ร้านจุดจุดจุด<i class="fa fa-search"></i> </h2>
+                </div>
+            </div>
+        </div>*@
+    <div class="container-fluid">
+        <a href="@Url.Action("IndexSearchLo", "Search")" class="card-title text-dark">กลับไปหน้าค้นหา</a>
+@*@using (Html.BeginForm("IndexSearchLo", "Search", FormMethod.Post))
+{
+        <div class="positionFixedLeft">
             <div class="card" style="width: 18rem; height:100%">
                 <div class="card-body">
 
-
                     <div class="form-group">
-                        @Html.DropDownListFor(Model => Model.PlaceType_ID, new SelectList(ViewBag.placetypename, "PlaceType_ID", "PlaceType_Name"), "ระบุประเภทสถานที่",
-new { @class = "form-control" })
+                        @Html.DropDownListFor(Model => Model.PlaceType_ID, new SelectList(ViewBag.placetypename, "PlaceType_ID", "PlaceType_Name"), "ระบุประเภทสถานที่", new { @class = "form-control" })
                     </div>
 
                     <div class="form-group">
-                        @Html.DropDownListFor(Model => Model.Place_Province, new SelectList(ViewBag.provincename, "ID", "Name"), "ระบุจังหวัด", new { @class = "form-control bt" })
+                        @Html.DropDownListFor(Model => Model.Place_Province, new SelectList(ViewBag.provincename, "ID", "Name"), "ระบุจังหวัด", new { @class = "form-control" })
                     </div>
 
                     <div class="form-group">
                         @Html.DropDownListFor(Model => Model.Place_District, new SelectList(ViewBag.District, "ID", "Name"), "ระบุเขต/อำเภอ", new { @class = "form-control" })
-                    </div>                   
+                    </div>
 
                     <div class="divbutton">
-                        <a href="@Url.Action("IndexSearchLo", "Search")" class="btn btn-dark btt" type="submit">กลับ</a>                                               
-                    </div>                   
+                        <button type="submit" class="btn btn-dark btt">ค้นหา</button>
+                    </div>
 
                 </div>
             </div>
-        </div>*@
-
-    @Html.Action("_PartialIndexSearchLoDetail", "Search")
-  
-    <nav aria-label="Page navigation example">
-        <ul class="pagination aa">
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-
-</div>
-
-
-@*}*@
-
-@*@section scripts {
-    @Scripts.Render("~/bundles/scripts/Search")
+        </div>
 }*@
+        @Html.Action("_PartialIndexSearchLoDetail", "Search")
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination aa">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+
+
+@section scripts {
+    @Scripts.Render("~/bundles/scripts/Search")
+}
 
 
